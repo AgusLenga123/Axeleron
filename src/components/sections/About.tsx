@@ -21,7 +21,7 @@ export function About() {
                     viewport={{ once: true }}
                 >
                     <h2 className="text-3xl md:text-5xl font-bold font-heading mb-6">
-                        Más que código, somos tu <span className="text-accent">Socio Estratégico</span>
+                        Más que código, somos tu <span className="text-accent">Socio Estratégico</span> <span className="text-2xl md:text-3xl inline-block align-middle">🎯</span>
                     </h2>
                     <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                         Somos una agencia digital nacida en Argentina con visión global. Entendemos que la tecnología no es el fin, sino el medio para alcanzar tus objetivos de negocio.
