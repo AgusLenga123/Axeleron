@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -20,9 +21,10 @@ export function Navbar() {
     }, []);
 
     const navLinks = [
-        { name: "Servicios", href: "#servicios" },
-        { name: "Planes", href: "#planes" },
         { name: "Nosotros", href: "#nosotros" },
+        { name: "Servicios", href: "#servicios" },
+        { name: "Paquetes", href: "#planes" },
+        { name: "Clientes", href: "#clientes" },
     ];
 
     return (
@@ -32,9 +34,11 @@ export function Navbar() {
                 isScrolled ? "bg-background/80 backdrop-blur-md border-b border-border/50" : "bg-transparent"
             )}
         >
-            <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-                <Link href="/" className="text-xl font-bold font-heading tracking-tighter hover:opacity-80 transition-opacity">
-                    Tech<span className="text-primary">Flow</span>
+            <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+                <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                    <span className="text-2xl md:text-3xl font-bold font-heading tracking-tighter">
+                        Axeleron <span className="text-primary italic">🚀</span>
+                    </span>
                 </Link>
 
                 {/* Desktop Nav */}

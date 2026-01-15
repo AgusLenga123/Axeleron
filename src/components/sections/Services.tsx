@@ -139,24 +139,38 @@ export function Services() {
                                 {service.description}
                             </p>
 
-                            <div className="flex gap-2 mt-4 opacity-70 group-hover:opacity-100 transition-opacity">
-                                {/* Check for specific logo or fallback to letters */}
-                                {service.details.tools.slice(0, 3).map(tool => (
-                                    <div key={tool} className="w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center relative overflow-hidden group/icon" title={tool}>
-                                        {/* @ts-expect-error - dynamic check */}
-                                        {service.details.toolImages && service.details.toolImages[tool] ? (
-                                            /* eslint-disable-next-line @next/next/no-img-element */
-                                            <img
-                                                /* @ts-expect-error - dynamic check */
-                                                src={service.details.toolImages[tool]}
-                                                alt={tool}
-                                                className="w-full h-full object-cover p-0.5"
-                                            />
-                                        ) : (
-                                            <div className="text-[8px] font-bold text-muted-foreground">{tool.slice(0, 2)}</div>
-                                        )}
-                                    </div>
-                                ))}
+                            <div className="flex gap-2 mt-4 opacity-70 group-hover:opacity-100 transition-opacity items-center justify-between">
+                                <div className="flex gap-2">
+                                    {/* Check for specific logo or fallback to letters */}
+                                    {service.details.tools.slice(0, 3).map(tool => (
+                                        <div key={tool} className="w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center relative overflow-hidden group/icon" title={tool}>
+                                            {/* @ts-expect-error - dynamic check */}
+                                            {service.details.toolImages && service.details.toolImages[tool] ? (
+                                                /* eslint-disable-next-line @next/next/no-img-element */
+                                                <img
+                                                    /* @ts-expect-error - dynamic check */
+                                                    src={service.details.toolImages[tool]}
+                                                    alt={tool}
+                                                    className="w-full h-full object-cover p-0.5"
+                                                />
+                                            ) : (
+                                                <div className="text-[8px] font-bold text-muted-foreground">{tool.slice(0, 2)}</div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                                <Button
+                                    size="default"
+                                    variant="outline"
+                                    className="opacity-0 group-hover:opacity-100 transition-all text-xs font-bold uppercase tracking-wider px-6"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        window.dispatchEvent(new CustomEvent('selectService', { detail: service.title }));
+                                        document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+                                    }}
+                                >
+                                    ¡Lo quiero!
+                                </Button>
                             </div>
                         </motion.div>
                     ))}

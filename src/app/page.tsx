@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
+import { Packages } from "@/components/sections/Packages";
 import { About } from "@/components/sections/About";
 import { TechStack } from "@/components/sections/TechStack";
 
@@ -13,6 +14,7 @@ export default function Home() {
       <TechStack />
       <About />
       <Services />
+      <Packages />
       <Testimonials />
       <Contact />
     </main>

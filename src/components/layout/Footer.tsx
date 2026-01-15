@@ -7,8 +7,8 @@ export function Footer() {
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-4 gap-8 mb-12">
                     <div className="space-y-4">
-                        <Link href="/" className="text-xl font-bold font-heading tracking-tighter">
-                            Tech<span className="text-primary">Flow</span>
+                        <Link href="/" className="text-xl font-bold font-heading tracking-tighter hover:opacity-80 transition-opacity">
+                            Axeleron
                         </Link>
                         <p className="text-muted-foreground text-sm leading-relaxed">
                             Agencia de desarrollo tecnológico enfocada en resultados para PYMES y startups de Argentina al mundo.
@@ -30,7 +30,7 @@ export function Footer() {
                         <ul className="space-y-2 text-sm text-muted-foreground">
                             <li><Link href="#nosotros" className="hover:text-primary transition-colors">Sobre Nosotros</Link></li>
 
-                            <li><Link href="#planes" className="hover:text-primary transition-colors">Planes</Link></li>
+                            <li><Link href="#planes" className="hover:text-primary transition-colors">Paquetes</Link></li>
                             <li><Link href="#contacto" className="hover:text-primary transition-colors">Contacto</Link></li>
                         </ul>
                     </div>
@@ -55,7 +55,7 @@ export function Footer() {
                 </div>
 
                 <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-                    <p>© {new Date().getFullYear()} TechFlow. Todos los derechos reservados.</p>
+                    <p>© {new Date().getFullYear()} Axeleron. Todos los derechos reservados.</p>
                     <div className="flex gap-6">
                         <Link href="#" className="hover:text-foreground">Privacidad</Link>
                         <Link href="#" className="hover:text-foreground">Términos</Link>

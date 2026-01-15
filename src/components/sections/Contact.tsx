@@ -23,10 +23,15 @@ export function Contact() {
     // Listen for custom event from services section
     useEffect(() => {
         const handleServiceSelect = (event: CustomEvent<string>) => {
-            setValue("message", `Hola, estoy interesado en el servicio de: ${event.detail}. Me gustaría más información.`);
-            // Optional: If we had a specific Select field, we could set it here too if registered.
-            // Since we use a native Select (or custom later), we can register it.
-            setValue("service", event.detail);
+            const detail = event.detail;
+            if (detail.startsWith("Pack:")) {
+                const packName = detail.replace("Pack: ", "");
+                setValue("service", "Paquete Estratégico");
+                setValue("message", `Hola, estoy interesado en contratar el ${detail}. Me gustaría más información sobre el proceso de implementación y tiempos estimado para una ${packName}.`);
+            } else {
+                setValue("service", detail);
+                setValue("message", `Hola, estoy interesado en el servicio de: ${detail}. Me gustaría agendar una reunión para conocer más detalles.`);
+            }
         };
 
         window.addEventListener('selectService', handleServiceSelect as EventListener);
@@ -144,6 +149,7 @@ export function Contact() {
                                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                             >
                                 <option value="" className="bg-secondary text-white">Selecciona un servicio (opcional)</option>
+                                <option value="Paquete Estratégico" className="bg-secondary text-white">🎉 Paquete Estratégico (Promo)</option>
                                 <option value="Desarrollo Landing Pages" className="bg-secondary text-white">Desarrollo Landing Pages</option>
                                 <option value="Aplicaciones Fullstack" className="bg-secondary text-white">Aplicaciones Fullstack</option>
                                 <option value="Automatización & Agentes IA" className="bg-secondary text-white">Automatización & Agentes IA</option>

@@ -23,7 +23,7 @@ const testimonials = [
 
 export function Testimonials() {
     return (
-        <section className="py-24 bg-secondary/10 overflow-hidden">
+        <section id="clientes" className="py-24 bg-secondary/10 overflow-hidden">
             <div className="container mx-auto px-4 mb-16">
                 <h2 className="text-3xl md:text-5xl font-bold font-heading text-center">
                     Lo que dicen nuestros clientes 💼
