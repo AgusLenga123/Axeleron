@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Axeleron
 
-## Getting Started
+**Axeleron** es una agencia de software y automatización enfocada en crear soluciones digitales rápidas, escalables y orientadas a resultados.  
+Ayudamos a empresas, startups y emprendedores a **acelerar sus procesos**, **optimizar costos** y **convertir más**, usando tecnología moderna, automatización e inteligencia artificial.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🧠 ¿Qué es Axeleron?
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Axeleron nace con una idea clara:  
+> **La tecnología no debería ser lenta, compleja ni costosa.**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Diseñamos e implementamos soluciones digitales que permiten a los negocios:
+- Ahorrar tiempo
+- Reducir tareas manuales
+- Mejorar la experiencia de sus clientes
+- Escalar sin fricción
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Todo con un enfoque **práctico**, **ágil** y **orientado a impacto real**.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Servicios
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### ⚡ Desarrollo de Software
+- Aplicaciones web a medida
+- Dashboards y paneles de gestión
+- Sistemas internos para empresas
+- MVPs para startups
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🤖 Automatización de Procesos
+- Automatización de tareas repetitivas
+- Integraciones entre herramientas (CRM, WhatsApp, email, planillas, etc.)
+- Flujos automáticos con lógica de negocio
+- Reducción de errores humanos
 
-## Deploy on Vercel
+### 💬 Chatbots & IA
+- Chatbots para atención al cliente
+- Bots para WhatsApp, web y redes sociales
+- Asistentes con inteligencia artificial
+- Automatización de respuestas frecuentes y procesos de venta
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🌐 Landing Pages & Webs
+- Landing pages optimizadas para conversión
+- Sitios rápidos, modernos y responsive
+- Integración con formularios, bots y analítica
+- Enfoque en performance y UX
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🚀 Nuestro Enfoque
+
+En Axeleron trabajamos bajo 4 pilares:
+
+- **Velocidad** → entregas rápidas sin sacrificar calidad  
+- **Simplicidad** → soluciones claras, sin sobreingeniería  
+- **Escalabilidad** → proyectos listos para crecer  
+- **Resultados** → tecnología alineada al negocio  
+
+No vendemos humo. Construimos soluciones que funcionan.
+
+---
+
+## 🧩 Tecnologías
+
+Usamos herramientas modernas y probadas en producción:
+
+- Frontend: HTML, CSS, JavaScript, Flutter, FlutterFlow
+- Backend: FastAPI, APIs REST
+- Automatización: Webhooks, integraciones, flujos automáticos
+- Bases de datos: Firebase, Firestore, SQL / NoSQL
+- IA: Chatbots, asistentes inteligentes, modelos de lenguaje
+- Infraestructura: Cloud, despliegues rápidos y seguros
+
+*(La stack se adapta según el proyecto y la necesidad del cliente.)*
+
+---
+
+## 🧪 Metodología de Trabajo
+
+1. **Análisis** – Entendemos el problema y los objetivos del negocio  
+2. **Propuesta** – Definimos la mejor solución técnica  
+3. **Desarrollo** – Construcción ágil e incremental  
+4. **Entrega** – Implementación y pruebas  
+5. **Optimización** – Ajustes y mejoras continuas  
+
+---
+
+## 🎯 ¿Para quién es Axeleron?
+
+- Startups que necesitan lanzar rápido
+- Empresas que quieren automatizar procesos
+- Negocios que buscan mejorar su atención al cliente
+- Emprendedores que quieren validar una idea (MVP)
+- Equipos que necesitan soluciones digitales a medida
+
+---
+
+## 🌍 Visión
+
+Convertirnos en una agencia referente en **software, automatización e IA**, ayudando a empresas de Latinoamérica y el mundo a **trabajar más rápido, mejor y con menos fricción**.
+
+---
+
+## 📩 Contacto
+
+¿Querés acelerar tu negocio?
+
+📧 Email: contacto@axeleron.dev  
+🌐 Website: Axeleron (landing en desarrollo)  
+💬 Consultas personalizadas y presupuestos a medida
+
+---
+
+**Axeleron — Build fast. Scale smarter.**
