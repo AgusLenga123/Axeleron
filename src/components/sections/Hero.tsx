@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Zap } from "lucide-react";
 
 export function Hero() {
     return (
@@ -89,22 +89,27 @@ export function Hero() {
                             </div>
                         </motion.div>
 
-                        {/* Floating Card: Active Users (Existing but improved) */}
+                        {/* Floating Card: Active Automations */}
                         <motion.div
                             animate={{ y: [0, -10, 0] }}
                             transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1 }}
-                            className="absolute top-10 -right-8 bg-black/80 p-4 rounded-xl border border-white/10 w-44 shadow-2xl z-20"
+                            className="absolute top-10 -right-8 bg-black/80 p-5 rounded-xl border border-white/10 w-48 shadow-2xl z-20"
                         >
-                            <div className="h-2 w-12 bg-gray-700 rounded mb-2" />
-                            <div className="h-2 w-24 bg-gray-800 rounded mb-4" />
-                            <div className="flex gap-2 items-center">
-                                <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center">
-                                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                            <div className="flex items-center gap-3 mb-3">
+                                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                                    <Zap className="w-4 h-4 text-primary" />
                                 </div>
-                                <div className="flex-1 space-y-2">
-                                    <div className="h-2 w-full bg-gray-800 rounded" />
-                                    <div className="h-2 w-2/3 bg-gray-800 rounded" />
+                                <div className="space-y-0.5">
+                                    <div className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Automatizaciones</div>
+                                    <div className="text-sm font-extrabold text-white">Activas: +7</div>
                                 </div>
+                            </div>
+                            <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
+                                <motion.div
+                                    animate={{ width: ["0%", "70%"] }}
+                                    transition={{ duration: 1, delay: 1.5 }}
+                                    className="bg-primary h-full"
+                                />
                             </div>
                         </motion.div>
 

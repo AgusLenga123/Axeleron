@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Target, TrendingUp, Workflow, Zap } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const features = [
     "Enfoque en ROI y Resultados",
@@ -52,30 +53,81 @@ export function About() {
                     viewport={{ once: true }}
                     className="relative"
                 >
-                    <div className="relative aspect-video rounded-2xl overflow-hidden bg-gradient-to-br from-gray-800 to-black border border-white/10 shadow-2xl p-8 flex items-end justify-center">
-                        {/* Abstract Grid content */}
-                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-                        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[length:32px_32px]"></div>
+                    <div className="relative aspect-square md:aspect-video rounded-3xl overflow-hidden bg-secondary/10 border border-primary/10 shadow-[0_0_50px_-12px_rgba(var(--primary),0.3)] p-8 flex flex-col justify-center items-center group">
+                        {/* Light Background with Glass effect */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-background to-accent/5" />
+                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-soft-light" />
 
-                        {/* Bar Chart Mockup */}
-                        <div className="relative z-10 w-full max-w-sm flex items-end justify-between gap-4 h-48">
-                            {[40, 65, 45, 80, 55, 90, 100].map((height, i) => (
-                                <motion.div
-                                    key={i}
-                                    initial={{ height: 0 }}
-                                    whileInView={{ height: `${height}%` }}
-                                    transition={{ duration: 1, delay: i * 0.1, ease: "easeOut" }}
-                                    className="w-full bg-white/90 rounded-t-sm shadow-[0_0_15px_rgba(255,255,255,0.3)] relative group"
-                                >
-                                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                                        {height}%
-                                    </div>
-                                </motion.div>
-                            ))}
+                        {/* Strategic Graphic Elements */}
+                        <div className="relative w-full h-full flex flex-col items-center justify-center">
+                            {/* ROI Line Graph (SVG) */}
+                            <svg className="absolute w-full h-32 text-primary/20 overflow-visible" viewBox="0 0 400 100">
+                                <defs>
+                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stopColor="var(--primary)" />
+                                        <stop offset="100%" stopColor="var(--accent)" />
+                                    </linearGradient>
+                                    <marker
+                                        id="arrowhead"
+                                        markerWidth="10"
+                                        markerHeight="7"
+                                        refX="9"
+                                        refY="3.5"
+                                        orient="auto"
+                                    >
+                                        <polygon points="0 0, 10 3.5, 0 7" fill="var(--accent)" />
+                                    </marker>
+                                </defs>
+                                <motion.path
+                                    initial={{ pathLength: 0 }}
+                                    whileInView={{ pathLength: 1 }}
+                                    transition={{ duration: 2, ease: "easeInOut" }}
+                                    d="M-10 90 C 50 90, 80 60, 150 60 C 220 60, 250 95, 320 55 C 370 30, 400 10, 420 -5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="4"
+                                    strokeLinecap="round"
+                                />
+                                <motion.path
+                                    initial={{ pathLength: 0 }}
+                                    whileInView={{ pathLength: 1 }}
+                                    transition={{ duration: 2, ease: "easeInOut", delay: 0.5 }}
+                                    d="M-10 90 C 50 90, 80 60, 150 60 C 220 60, 250 95, 320 55 C 370 30, 400 10, 420 -5"
+                                    fill="none"
+                                    stroke="url(#gradient)"
+                                    strokeWidth="4"
+                                    strokeLinecap="round"
+                                    markerEnd="url(#arrowhead)"
+                                />
+                            </svg>
+
+                            {/* Floating Strategic Nodes */}
+                            <div className="grid grid-cols-2 gap-8 relative z-10 w-full max-w-sm">
+                                {[
+                                    { icon: Target, label: "Estrategia", color: "text-blue-500", bg: "bg-blue-500/10" },
+                                    { icon: Workflow, label: "Procesos", color: "text-purple-500", bg: "bg-purple-500/10" },
+                                    { icon: Zap, label: "Ejecución", color: "text-amber-500", bg: "bg-amber-500/10" },
+                                    { icon: TrendingUp, label: "Resultados", color: "text-green-500", bg: "bg-green-500/10" }
+                                ].map((node, i) => (
+                                    <motion.div
+                                        key={node.label}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: i * 0.2 }}
+                                        className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-background/40 border border-white/5 backdrop-blur-md shadow-xl group-hover:scale-105 transition-transform"
+                                    >
+                                        <div className={cn("p-3 rounded-xl", node.bg)}>
+                                            <node.icon className={cn("w-6 h-6", node.color)} />
+                                        </div>
+                                        <span className="text-xs font-bold uppercase tracking-tighter opacity-70 italic">{node.label}</span>
+                                    </motion.div>
+                                ))}
+                            </div>
                         </div>
-                        <div className="absolute top-6 left-8 z-10">
-                            <h3 className="text-2xl font-bold text-white">Crecimiento Sostenido</h3>
-                            <p className="text-white/60 text-sm">Escalabilidad garantizada</p>
+
+                        <div className="absolute bottom-6 left-8 z-10">
+                            <h3 className="text-xl font-bold text-foreground">Socio Tecnológico</h3>
+                            <p className="text-muted-foreground text-xs font-medium">Escalando tu visión con IA</p>
                         </div>
                     </div>
                     {/* Decoration */}
