@@ -34,12 +34,12 @@ export function Hero() {
                     </h1>
 
                     <p className="text-lg text-muted-foreground leading-relaxed max-w-lg mx-auto lg:mx-0">
-                        Ayudamos a PYMES y startups a escalar con desarrollo web, automatizaciones e inteligencia artificial. Tu socio tecnológico estratégico.
+                        Ayudamos a empresas y negocios a escalar con desarrollo web, automatizaciones, software e inteligencia artificial. Tu socio tecnológico estratégico.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
                         <Button size="lg" variant="premium" className="group">
-                            Agendá una llamada
+                            Contactanos HOY 🚀
                             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Button>
                         <Button size="lg" variant="outline" className="h-11">
@@ -47,14 +47,7 @@ export function Hero() {
                         </Button>
                     </div>
 
-                    <div className="pt-8 flex items-center gap-4 text-sm text-muted-foreground justify-center lg:justify-start">
-                        <div className="flex -space-x-2">
-                            {[1, 2, 3, 4].map(i => (
-                                <div key={i} className="w-8 h-8 rounded-full bg-gray-800 border-2 border-background flex items-center justify-center text-xs font-bold text-gray-500">
-                                    U{i}
-                                </div>
-                            ))}
-                        </div>
+                    <div className="pt-8 flex items-center gap-2 text-sm text-muted-foreground justify-center lg:justify-start">
                         <p>Más de <span className="text-foreground font-semibold">50+ empresas</span> confían en nosotros.</p>
                     </div>
                 </motion.div>

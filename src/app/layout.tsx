@@ -16,8 +16,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Axeleron - Agencia de Desarrollo Digital",
-  description: "Soluciones tecnológicas para potenciar tu negocio. Web, Apps, IA y Automatización.",
+  title: "Axeleron - Agencia de Software & Automatización",
+  description: "Soluciones tecnológicas para potenciar tu negocio. Web, Apps, IA y Automatización en un solo lugar.",
 };
 
 export default function RootLayout({

@@ -27,7 +27,7 @@ export function About() {
                         Somos una agencia digital nacida en Argentina con visión global. Entendemos que la tecnología no es el fin, sino el medio para alcanzar tus objetivos de negocio.
                     </p>
                     <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                        Nos especializamos en trabajar con PYMES que buscan dar el salto digital, ofreciendo soluciones a medida que combinan diseño premium con funcionalidad robusta.
+                        Nos especializamos en trabajar con empresas y negocios que buscan dar el salto digital, ofreciendo soluciones a medida que combinan diseño premium con funcionalidad robusta.
                     </p>
 
                     <ul className="space-y-4">

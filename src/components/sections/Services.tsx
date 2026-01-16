@@ -9,24 +9,28 @@ import { Button } from "@/components/ui/button";
 const services = [
     {
         title: "Desarrollo Landing Pages",
-        description: "Diseñamos páginas de alto impacto optimizadas para conversión. Rapidez, estética y resultados en una sola pantalla.",
+        description: "Diseñamos páginas de alto impacto visual optimizadas para conversión. Rapidez, estética y resultados en menos de 1 semana.",
+        startingPrice: "199",
+        badges: ["Conversión", "Ventas", "Rapidez"],
         icon: Code,
         gradient: "from-blue-500/20 to-cyan-500/20",
         textGradient: "text-blue-500",
         details: {
-            longDescription: "Creamos Landing Pages orientadas 100% a la venta y captación de leads. Utilizamos estructuras persuasivas, copywriting estratégico y diseño mobile-first para garantizar que cada visitante tenga la mejor experiencia posible.",
+            longDescription: "Creamos Landing Pages orientadas 100% a la venta, engagement y captación de leads. Utilizamos estructuras persuasivas, copywriting estratégico y diseño Web & Mobile para garantizar que cada visitante tenga la mejor experiencia posible.",
             features: ["Diseño UX/UI Premium", "Redacción Persuasiva (Copywriting)", "Integración con Email Marketing", "Tests A/B", "Velocidad de Carga Ultra Rápida"],
             tools: ["Next.js", "Tailwind", "Framer Motion"]
         }
     },
     {
         title: "Aplicaciones Fullstack",
-        description: "Sistemas web robustos y escalables (SaaS, Dashboards, CRMs) desarrollados con tecnologías modernas.",
+        description: "Sistemas Web & Mobile robustos y escalables a medida (SaaS, Dashboards, CRMs, etc...) desarrollados con tecnologías modernas.",
+        startingPrice: "899",
+        badges: ["Escalabilidad", "Seguridad", "SaaS"],
         icon: Smartphone,
         gradient: "from-purple-500/20 to-pink-500/20",
         textGradient: "text-purple-500",
         details: {
-            longDescription: "Desarrollamos aplicaciones web complejas a medida. Desde paneles de administración internos hasta plataformas SaaS completas para comercializar tu producto digital.",
+            longDescription: "Desarrollamos aplicaciones Web & Mobile complejas a medida. Desde paneles de administración internos hasta plataformas SaaS completas para comercializar tu producto digital.",
             features: ["Arquitectura Escalable", "Base de Datos Segura", "APIs REST / GraphQL", "Autenticación de Usuarios", "Dashboard de Métricas"],
             tools: ["React", "Node.js", "PostgreSQL", "Supabase"],
             toolImages: { "React": "/assets/icons/Reacticon.png", "Node.js": "/assets/icons/nodejslogo.png" }
@@ -34,7 +38,9 @@ const services = [
     },
     {
         title: "Automatización & Agentes IA",
-        description: "Simplificamos tu operativa con flujos de trabajo inteligentes que funcionan 24/7 sin intervención humana.",
+        description: "No pierdas mas tiempo con tareas manSimplificamos tu operativa de negocio con flujos de trabajo inteligentes que funcionan 24/7 sin intervención humana.",
+        startingPrice: "349",
+        badges: ["Eficiencia AI", "Ahorro", "Workflow"],
         icon: Zap,
         gradient: "from-amber-500/20 to-orange-500/20",
         textGradient: "text-amber-500",
@@ -47,7 +53,9 @@ const services = [
     },
     {
         title: "Chatbots 24/7",
-        description: "Asistentes de IA para WhatsApp, Instagram y Web que atienden clientes, agendan turnos y cierran ventas.",
+        description: "Crea tus propios chatbots de IA para WhatsApp, Instagram y Telegram que atienden clientes, resuelven dudas, agendan turnos y cierran ventas las 24 horas del día, los 7 días de la semana.",
+        startingPrice: "249",
+        badges: ["Soporte 24/7", "WhatsApp", "Leads"],
         icon: MessageSquare,
         gradient: "from-green-500/20 to-emerald-500/20",
         textGradient: "text-green-500",
@@ -64,7 +72,9 @@ const services = [
     },
     {
         title: "Optimización SEO",
-        description: "Posicionamos tu marca en los primeros lugares de Google para atraer tráfico orgánico de calidad constante.",
+        description: "¿Cansado de no tener visibilidad en Google? Posicionamos tu marca en los primeros lugares del navegador para atraer tráfico orgánico de calidad constante.",
+        startingPrice: "149",
+        badges: ["Visibilidad", "Ranking", "Google"],
         icon: Search,
         gradient: "from-indigo-500/20 to-violet-500/20",
         textGradient: "text-indigo-500",
@@ -76,7 +86,9 @@ const services = [
     },
     {
         title: "Branding & Diseño",
-        description: "Construimos identidades visuales memorables que transmiten profesionalismo y conectan con tu audiencia.",
+        description: "¿Necesitas una identidad visual que se destaque? Construimos diseños de marca memorables que transmiten profesionalismo y conectan con tu audiencia.",
+        startingPrice: "199",
+        badges: ["Identidad", "Marca", "Estética"],
         icon: Palette,
         gradient: "from-rose-500/20 to-red-500/20",
         textGradient: "text-rose-500",
@@ -139,38 +151,32 @@ export function Services() {
                                 {service.description}
                             </p>
 
-                            <div className="flex gap-2 mt-4 opacity-70 group-hover:opacity-100 transition-opacity items-center justify-between">
-                                <div className="flex gap-2">
-                                    {/* Check for specific logo or fallback to letters */}
-                                    {service.details.tools.slice(0, 3).map(tool => (
-                                        <div key={tool} className="w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center relative overflow-hidden group/icon" title={tool}>
-                                            {/* @ts-expect-error - dynamic check */}
-                                            {service.details.toolImages && service.details.toolImages[tool] ? (
-                                                /* eslint-disable-next-line @next/next/no-img-element */
-                                                <img
-                                                    /* @ts-expect-error - dynamic check */
-                                                    src={service.details.toolImages[tool]}
-                                                    alt={tool}
-                                                    className="w-full h-full object-cover p-0.5"
-                                                />
-                                            ) : (
-                                                <div className="text-[8px] font-bold text-muted-foreground">{tool.slice(0, 2)}</div>
-                                            )}
+                            <div className="mt-auto pt-4 border-t border-white/5 flex flex-col">
+                                <div className="flex flex-wrap gap-x-4 gap-y-2">
+                                    {service.badges.map((badge, i) => (
+                                        <div key={badge} className="flex items-center gap-1.5">
+                                            <div className={cn("w-1.5 h-1.5 rounded-full bg-primary", i === 0 && "animate-pulse")} />
+                                            <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold">{badge}</span>
                                         </div>
                                     ))}
                                 </div>
-                                <Button
-                                    size="default"
-                                    variant="outline"
-                                    className="opacity-0 group-hover:opacity-100 transition-all text-xs font-bold uppercase tracking-wider px-6"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        window.dispatchEvent(new CustomEvent('selectService', { detail: service.title }));
-                                        document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
-                                    }}
-                                >
-                                    ¡Lo quiero!
-                                </Button>
+
+                                <div className="grid grid-rows-[0fr] opacity-0 group-hover:grid-rows-[1fr] group-hover:opacity-100 group-hover:mt-4 transition-all duration-300 ease-in-out overflow-hidden">
+                                    <div className="min-h-0">
+                                        <Button
+                                            size="default"
+                                            variant="outline"
+                                            className="w-full text-xs font-bold uppercase tracking-wider"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                window.dispatchEvent(new CustomEvent('selectService', { detail: service.title }));
+                                                document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+                                            }}
+                                        >
+                                            ¡Lo quiero!
+                                        </Button>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
                     ))}
@@ -235,29 +241,10 @@ export function Services() {
                                     </ul>
                                 </div>
 
-                                <div className="flex flex-col sm:flex-row justify-between items-center pt-4 border-t border-white/5 gap-4">
-                                    <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                                        {selectedService.details.tools.map(tool => (
-                                            <div key={tool} className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
-                                                <div className="w-5 h-5 rounded-full bg-background flex items-center justify-center text-[8px] font-bold relative overflow-hidden">
-                                                    {/* @ts-expect-error - dynamic check */}
-                                                    {selectedService.details.toolImages && selectedService.details.toolImages[tool] ? (
-                                                        /* eslint-disable-next-line @next/next/no-img-element */
-                                                        <img
-                                                            /* @ts-expect-error - dynamic check */
-                                                            src={selectedService.details.toolImages[tool]}
-                                                            alt={tool}
-                                                            className="w-full h-full object-cover"
-                                                        />
-                                                    ) : (
-                                                        <span>{tool.slice(0, 2)}</span>
-                                                    )}
-                                                </div>
-                                                <span className="text-xs font-bold text-muted-foreground">
-                                                    {tool}
-                                                </span>
-                                            </div>
-                                        ))}
+                                <div className="flex flex-col sm:flex-row justify-between items-center pt-6 border-t border-white/5 gap-4">
+                                    <div className="text-center sm:text-left">
+                                        <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mb-1">Presupuesto inicial</p>
+                                        <p className="text-3xl font-bold text-primary">Desde ${selectedService.startingPrice}</p>
                                     </div>
                                     <Button
                                         onClick={() => {

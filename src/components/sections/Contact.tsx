@@ -57,7 +57,7 @@ export function Contact() {
                         Hablemos de tu <span className="text-primary">Próximo Proyecto</span> 🚀
                     </h2>
                     <p className="text-muted-foreground text-lg mb-8">
-                        ¿Listo para escalar? Dejanos tus datos y un especialista te contactará para agendar una consultoría gratuita.
+                        ¿Listo para escalar tu negocio? Dejanos tus datos y un especialista te contactará para agendar una consultoría GRATUITA.
                     </p>
 
                     <div className="space-y-6">
@@ -67,7 +67,7 @@ export function Contact() {
                             </div>
                             <div>
                                 <div className="text-sm text-muted-foreground">Email</div>
-                                <div className="font-semibold">hola@techflow.ar</div>
+                                <div className="font-semibold">hola@axeleron.ar</div>
                             </div>
                         </div>
 
@@ -77,7 +77,7 @@ export function Contact() {
                             </div>
                             <div>
                                 <div className="text-sm text-muted-foreground">Teléfono / WhatsApp</div>
-                                <div className="font-semibold">+54 9 11 1234 5678</div>
+                                <div className="font-semibold">+54 9 11 5055 2525</div>
                             </div>
                         </div>
 
@@ -87,7 +87,7 @@ export function Contact() {
                             </div>
                             <div>
                                 <div className="text-sm text-muted-foreground">Oficinas</div>
-                                <div className="font-semibold">Palermo, Buenos Aires</div>
+                                <div className="font-semibold">Martinez, Provincia de Buenos Aires</div>
                             </div>
                         </div>
                     </div>
