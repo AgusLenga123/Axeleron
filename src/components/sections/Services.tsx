@@ -39,7 +39,7 @@ const services = [
     {
         title: "Automatización & Agentes IA",
         description: "No pierdas mas tiempo con tareas manSimplificamos tu operativa de negocio con flujos de trabajo inteligentes que funcionan 24/7 sin intervención humana.",
-        startingPrice: "349",
+        startingPrice: "249",
         badges: ["Eficiencia AI", "Ahorro", "Workflow"],
         icon: Zap,
         gradient: "from-amber-500/20 to-orange-500/20",

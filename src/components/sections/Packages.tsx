@@ -11,8 +11,8 @@ const packages = [
     {
         title: "Landing + Chatbot",
         description: "La combinación perfecta para captar leads y atenderlos automáticamente 24/7.",
-        originalPrice: "450",
-        price: "299",
+        originalPrice: "550",
+        price: "350",
         features: [
             "Landing Page de alto impacto",
             "Chatbot IA para WhatsApp/Web",
@@ -34,7 +34,7 @@ const packages = [
         title: "Landing + SEO",
         description: "No solo una web bonita, sino una que aparece en los primeros resultados de búsqueda.",
         originalPrice: "500",
-        price: "349",
+        price: "300",
         features: [
             "Landing Page optimizada",
             "Auditoría SEO técnica",
@@ -55,8 +55,8 @@ const packages = [
     {
         title: "Chatbot + Automatización",
         description: "Escala tu operatividad delegando tareas repetitivas a la inteligencia artificial.",
-        originalPrice: "550",
-        price: "399",
+        originalPrice: "500",
+        price: "400",
         features: [
             "Chatbot IA Omnicanal",
             "Automatización de flujo n8n",

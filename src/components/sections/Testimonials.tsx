@@ -5,19 +5,21 @@ import { Star } from "lucide-react";
 
 const testimonials = [
     {
-        name: "Martín Rodriguez",
-        role: "CEO, Logística Global",
+        name: "Diego Ricci",
         text: "Simplificaron procesos que nos tomaban días en minutos. La automatización que implementaron cambió nuestro negocio por completo."
     },
     {
-        name: "Sofía Martínez",
-        role: "Marketing Manager, E-Shop Ar",
+        name: "Pilar Mazzini",
         text: "Nuestra conversión aumentó un 40% después del rediseño. Entendieron perfectamente la estética que buscábamos."
     },
     {
-        name: "Lucas Viale",
-        role: "Founder, StartupTech",
+        name: "Ramiro Ocampo",
         text: "El equipo es súper profesional. No solo entregaron a tiempo, sino que propusieron mejoras que no habíamos considerado."
+    },
+
+    {
+        name: "Bruno Cavallaro",
+        text: "La mejor decisión para nuestra startup. Los agentes de IA que desarrollaron para nosotros nos permitieron escalar sin aumentar los costos operativos."
     }
 ];
 
@@ -64,7 +66,6 @@ export function Testimonials() {
                                 </div>
                                 <div>
                                     <div className="font-bold text-sm">{t.name}</div>
-                                    <div className="text-xs text-muted-foreground">{t.role}</div>
                                 </div>
                             </div>
                         </div>

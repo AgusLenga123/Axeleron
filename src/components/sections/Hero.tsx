@@ -38,11 +38,21 @@ export function Hero() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
-                        <Button size="lg" variant="premium" className="group">
+                        <Button
+                            size="lg"
+                            variant="premium"
+                            className="group"
+                            onClick={() => document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })}
+                        >
                             Contactanos HOY 🚀
                             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </Button>
-                        <Button size="lg" variant="outline" className="h-11">
+                        <Button
+                            size="lg"
+                            variant="outline"
+                            className="h-11"
+                            onClick={() => document.getElementById('servicios')?.scrollIntoView({ behavior: 'smooth' })}
+                        >
                             Ver nuestros servicios
                         </Button>
                     </div>

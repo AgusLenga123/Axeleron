@@ -52,7 +52,13 @@ export function Navbar() {
                             {link.name}
                         </Link>
                     ))}
-                    <Button variant="premium" className="font-semibold">Agendá una llamada</Button>
+                    <Button
+                        variant="premium"
+                        className="font-semibold"
+                        onClick={() => document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })}
+                    >
+                        Agendá una llamada
+                    </Button>
                 </div>
 
                 {/* Mobile Toggle */}
@@ -84,7 +90,16 @@ export function Navbar() {
                                     {link.name}
                                 </Link>
                             ))}
-                            <Button className="w-full" variant="premium">Agendá una llamada</Button>
+                            <Button
+                                className="w-full"
+                                variant="premium"
+                                onClick={() => {
+                                    setIsMobileMenuOpen(false);
+                                    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                            >
+                                Agendá una llamada
+                            </Button>
                         </div>
                     </motion.div>
                 )}
