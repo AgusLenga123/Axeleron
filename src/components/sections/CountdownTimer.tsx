@@ -54,7 +54,7 @@ export function CountdownTimer() {
                 {units.map((unit) => (
                     <div key={unit.label} className="flex flex-col items-center">
                         <div className="bg-secondary/40 backdrop-blur-sm border border-border/50 rounded-xl md:rounded-2xl p-3 md:p-6 min-w-[70px] md:min-w-[100px] shadow-lg shadow-primary/5">
-                            <span className="text-2xl md:text-4xl font-bold font-heading tabular-nums bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70">
+                            <span className="text-2xl md:text-4xl font-bold font-heading tabular-nums text-white">
                                 {unit.value.toString().padStart(2, '0')}
                             </span>
                         </div>

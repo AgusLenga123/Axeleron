@@ -111,7 +111,7 @@ export function Services() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-3xl md:text-5xl font-bold font-heading mb-6 whitespace-nowrap overflow-hidden text-ellipsis"
+                        className="text-3xl md:text-5xl font-bold font-heading mb-6"
                     >
                         Soluciones que <span className="text-primary">Evolucionan</span> 🧠
                     </motion.h2>

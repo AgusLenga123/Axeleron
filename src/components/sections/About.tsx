@@ -53,7 +53,7 @@ export function About() {
                     viewport={{ once: true }}
                     className="relative"
                 >
-                    <div className="relative aspect-square md:aspect-video rounded-3xl overflow-hidden bg-secondary/10 border border-primary/10 shadow-[0_0_50px_-12px_rgba(var(--primary),0.3)] p-8 flex flex-col justify-center items-center group">
+                    <div className="relative aspect-square md:aspect-video rounded-3xl overflow-hidden bg-secondary/10 border border-primary/10 shadow-[0_0_50px_-12px_rgba(var(--primary),0.3)] p-6 md:p-8 flex flex-col justify-center items-center group">
                         {/* Light Background with Glass effect */}
                         <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-background to-accent/5" />
                         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-soft-light" />
@@ -102,7 +102,7 @@ export function About() {
                             </svg>
 
                             {/* Floating Strategic Nodes */}
-                            <div className="grid grid-cols-2 gap-8 relative z-10 w-full max-w-sm">
+                            <div className="grid grid-cols-2 gap-4 md:gap-8 relative z-10 w-full max-w-sm mb-12 md:mb-0">
                                 {[
                                     { icon: Target, label: "Estrategia", color: "text-blue-500", bg: "bg-blue-500/10" },
                                     { icon: Workflow, label: "Procesos", color: "text-purple-500", bg: "bg-purple-500/10" },
@@ -125,9 +125,9 @@ export function About() {
                             </div>
                         </div>
 
-                        <div className="absolute bottom-6 left-8 z-10">
-                            <h3 className="text-xl font-bold text-foreground">Socio Tecnológico</h3>
-                            <p className="text-muted-foreground text-xs font-medium">Escalando tu visión con IA</p>
+                        <div className="absolute bottom-4 left-6 md:bottom-6 md:left-8 z-10">
+                            <h3 className="text-lg md:text-xl font-bold text-foreground">Socio Tecnológico</h3>
+                            <p className="text-muted-foreground text-[10px] md:text-xs font-medium">Escalando tu visión con IA</p>
                         </div>
                     </div>
                     {/* Decoration */}
