@@ -133,37 +133,124 @@ export function Hero() {
                             </div>
                         </div>
 
-                        {/* Fake landing content */}
-                        <div className="p-6 md:p-10 space-y-6">
-                            {/* Hero fake */}
-                            <div className="space-y-3">
-                                <div className="h-3 w-24 bg-primary/30 rounded-full" />
-                                <div className="h-8 w-3/4 bg-white/10 rounded-lg" />
-                                <div className="h-8 w-2/3 bg-white/8 rounded-lg" />
-                                <div className="h-4 w-full bg-white/5 rounded-md" />
-                                <div className="h-4 w-5/6 bg-white/5 rounded-md" />
-                                <div className="flex gap-3 pt-2">
-                                    <div className="h-10 w-40 bg-gradient-to-r from-primary/80 to-accent/80 rounded-lg" />
-                                    <div className="h-10 w-32 bg-white/10 rounded-lg border border-white/10" />
+                        {/* Fake landing content — richer mockup */}
+                        <div className="p-6 md:p-10">
+                            <div className="grid md:grid-cols-5 gap-6">
+                                {/* Left col: hero copy */}
+                                <div className="md:col-span-3 space-y-4">
+                                    {/* Eyebrow */}
+                                    <div className="h-3 w-28 bg-primary/50 rounded-full" />
+                                    {/* Headline lines */}
+                                    <div className="space-y-2">
+                                        <div className="h-7 w-full bg-white/15 rounded-lg" />
+                                        <div className="h-7 w-4/5 bg-white/12 rounded-lg" />
+                                    </div>
+                                    {/* Body text */}
+                                    <div className="space-y-1.5 pt-1">
+                                        <div className="h-3 w-full bg-white/6 rounded" />
+                                        <div className="h-3 w-11/12 bg-white/6 rounded" />
+                                        <div className="h-3 w-4/5 bg-white/6 rounded" />
+                                    </div>
+                                    {/* CTA buttons */}
+                                    <div className="flex gap-3 pt-2">
+                                        <div className="h-9 w-36 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
+                                            <div className="h-2 w-20 bg-white/60 rounded" />
+                                        </div>
+                                        <div className="h-9 w-28 bg-white/8 rounded-lg border border-white/10 flex items-center justify-center">
+                                            <div className="h-2 w-16 bg-white/30 rounded" />
+                                        </div>
+                                    </div>
+                                    {/* Avatars + trust */}
+                                    <div className="flex items-center gap-3 pt-1">
+                                        <div className="flex -space-x-2">
+                                            {["bg-pink-400", "bg-violet-400", "bg-blue-400", "bg-emerald-400"].map((c, i) => (
+                                                <div key={i} className={`w-6 h-6 rounded-full ${c} border-2 border-background`} />
+                                            ))}
+                                        </div>
+                                        <div className="h-2.5 w-32 bg-white/15 rounded" />
+                                    </div>
+                                </div>
+
+                                {/* Right col: visual card */}
+                                <div className="md:col-span-2 flex flex-col gap-3">
+                                    {/* Mini chart card */}
+                                    <div className="bg-white/5 border border-white/8 rounded-xl p-4">
+                                        <div className="flex items-center justify-between mb-3">
+                                            <div className="h-2.5 w-16 bg-white/20 rounded" />
+                                            <div className="h-5 w-12 bg-green-500/20 rounded-md flex items-center justify-center">
+                                                <span className="text-[9px] text-green-400 font-bold">+124%</span>
+                                            </div>
+                                        </div>
+                                        {/* Bar chart */}
+                                        <div className="flex items-end gap-1.5 h-14">
+                                            {[35, 55, 42, 68, 52, 80, 95].map((h, i) => (
+                                                <div
+                                                    key={i}
+                                                    className="flex-1 rounded-sm"
+                                                    style={{
+                                                        height: `${h}%`,
+                                                        background: i === 6
+                                                            ? "linear-gradient(to top, #6366f1, #8b5cf6)"
+                                                            : "rgba(255,255,255,0.08)"
+                                                    }}
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Leads counter card */}
+                                    <div className="bg-white/5 border border-white/8 rounded-xl p-4 flex items-center gap-3">
+                                        <div className="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                                            <span className="text-green-400 text-xs font-bold">✓</span>
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="h-2 w-12 bg-white/15 rounded mb-1.5" />
+                                            <div className="h-5 w-16 bg-green-400/20 rounded flex items-center justify-center">
+                                                <span className="text-[10px] text-green-400 font-bold">+48 leads</span>
+                                            </div>
+                                        </div>
+                                        {/* Sparkline */}
+                                        <svg className="w-16 h-8" viewBox="0 0 64 32">
+                                            <polyline
+                                                points="0,28 10,22 20,18 30,12 40,15 50,6 64,2"
+                                                fill="none"
+                                                stroke="#34d399"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                opacity="0.7"
+                                            />
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
 
-                            {/* Stats row */}
-                            <div className="grid grid-cols-3 gap-4 pt-4">
-                                {[0.6, 0.85, 0.45].map((w, i) => (
-                                    <div key={i} className="bg-white/5 rounded-xl p-4 space-y-2 border border-white/5">
-                                        <div className="h-6 w-16 bg-primary/30 rounded" />
-                                        <div style={{ width: `${w * 100}%` }} className="h-3 bg-white/10 rounded" />
+                            {/* Bottom stats row */}
+                            <div className="grid grid-cols-3 gap-3 mt-5">
+                                {[
+                                    { label: "Visitas / mes", value: "4,280", color: "bg-primary/30", bar: 0.72 },
+                                    { label: "Conversión", value: "3.8%", color: "bg-accent/40", bar: 0.55 },
+                                    { label: "Leads nuevos", value: "162", color: "bg-emerald-500/30", bar: 0.88 },
+                                ].map((s, i) => (
+                                    <div key={i} className="bg-white/4 border border-white/6 rounded-xl p-3 space-y-2">
+                                        <div className="flex justify-between items-center">
+                                            <div className="h-2 w-14 bg-white/15 rounded" />
+                                            <span className="text-[10px] font-bold text-white/60">{s.value}</span>
+                                        </div>
+                                        <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                            <div className={`h-full ${s.color} rounded-full`} style={{ width: `${s.bar * 100}%` }} />
+                                        </div>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
                         {/* Glow effect */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent pointer-events-none" />
                     </div>
 
-                    {/* Floating metrics */}
+                    {/* Floating metric cards */}
+                    {/* Conversión — top right */}
                     <motion.div
                         animate={{ y: [0, -8, 0] }}
                         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -178,6 +265,7 @@ export function Hero() {
                         </div>
                     </motion.div>
 
+                    {/* Entregado — bottom left */}
                     <motion.div
                         animate={{ y: [0, 8, 0] }}
                         transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
@@ -188,6 +276,36 @@ export function Hero() {
                             <div>
                                 <div className="text-xs text-muted-foreground">Entregado en</div>
                                 <div className="text-lg font-bold">7 días</div>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Engagement — top left */}
+                    <motion.div
+                        animate={{ y: [0, -6, 0] }}
+                        transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.7 }}
+                        className="absolute -top-4 -left-4 md:-left-8 bg-background/95 border border-white/10 rounded-2xl p-4 shadow-2xl hidden sm:block"
+                    >
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400 font-bold text-lg">❤</div>
+                            <div>
+                                <div className="text-xs text-muted-foreground">Engagement</div>
+                                <div className="text-lg font-bold text-pink-400">+84%</div>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Nuevos leads — bottom right */}
+                    <motion.div
+                        animate={{ y: [0, 6, 0] }}
+                        transition={{ repeat: Infinity, duration: 3.8, ease: "easeInOut", delay: 1.5 }}
+                        className="absolute -bottom-4 -right-4 md:-right-8 bg-background/95 border border-white/10 rounded-2xl p-4 shadow-2xl hidden sm:block"
+                    >
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-violet-500/20 flex items-center justify-center text-violet-400 font-bold text-lg">↗</div>
+                            <div>
+                                <div className="text-xs text-muted-foreground">Nuevos leads</div>
+                                <div className="text-lg font-bold text-violet-400">+248</div>
                             </div>
                         </div>
                     </motion.div>
