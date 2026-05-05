@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google"; // eslint-disable-line @typescript-eslint/no-unused-vars
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/Navbar";
@@ -16,8 +16,14 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Axeleron - Agencia de Software & Automatización",
-  description: "Soluciones tecnológicas para potenciar tu negocio. Web, Apps, IA y Automatización en un solo lugar.",
+  title: "Axeliron — Tu Landing Page lista en 7 días hábiles",
+  description: "Creamos landing pages de alta conversión para coaches, clínicas, ecommerce y pymes. Sin backend complejo. Lista en 7 días hábiles.",
+  keywords: "landing page, alta conversión, diseño web, leads, negocios digitales, coaches, pymes, clínicas",
+  openGraph: {
+    title: "Axeliron — Tu Landing Page lista en 7 días hábiles",
+    description: "Creamos landing pages de alta conversión para coaches, clínicas, ecommerce y pymes.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

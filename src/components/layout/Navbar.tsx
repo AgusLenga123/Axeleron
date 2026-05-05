@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -21,23 +20,27 @@ export function Navbar() {
     }, []);
 
     const navLinks = [
-        { name: "Nosotros", href: "#nosotros" },
-        { name: "Servicios", href: "#servicios" },
-        { name: "Paquetes", href: "#planes" },
-        { name: "Clientes", href: "#clientes" },
+        { name: "Cómo funciona", href: "#como-funciona" },
+        { name: "Planes", href: "#planes" },
+        { name: "Ejemplos", href: "#ejemplos" },
+        { name: "FAQ", href: "#faq" },
     ];
+
+    const scrollToContact = () => {
+        document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+    };
 
     return (
         <nav
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-                isScrolled ? "bg-background/80 backdrop-blur-md border-b border-border/50" : "bg-transparent"
+                isScrolled ? "bg-background/90 backdrop-blur-md border-b border-border/50" : "bg-transparent"
             )}
         >
             <div className="container mx-auto px-4 h-20 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                     <span className="text-2xl md:text-3xl font-bold font-heading tracking-tighter">
-                        Axeleron <span className="text-primary italic">🚀</span>
+                        Axeleron <span className="text-primary">🚀</span>
                     </span>
                 </Link>
 
@@ -54,17 +57,19 @@ export function Navbar() {
                     ))}
                     <Button
                         variant="premium"
-                        className="font-semibold"
-                        onClick={() => document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="font-semibold px-5"
+                        onClick={scrollToContact}
                     >
-                        Agendá una llamada
+                        Quiero mi landing →
                     </Button>
                 </div>
 
                 {/* Mobile Toggle */}
                 <button
+                    id="mobile-menu-toggle"
                     className="md:hidden p-2 text-foreground"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label="Toggle menu"
                 >
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
@@ -84,7 +89,7 @@ export function Navbar() {
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                                    className="text-sm font-medium text-foreground hover:text-primary transition-colors py-1"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     {link.name}
@@ -95,10 +100,10 @@ export function Navbar() {
                                 variant="premium"
                                 onClick={() => {
                                     setIsMobileMenuOpen(false);
-                                    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+                                    scrollToContact();
                                 }}
                             >
-                                Agendá una llamada
+                                Quiero mi landing →
                             </Button>
                         </div>
                     </motion.div>

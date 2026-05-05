@@ -1,177 +1,196 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowRight, Zap } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, CalendarClock } from "lucide-react";
 
 export function Hero() {
+    const scrollToContact = () => {
+        document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
         <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
             {/* Background Gradients */}
             <div className="absolute inset-0 z-0 select-none pointer-events-none">
-                <div className="absolute top-0 right-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[120px] animate-pulse-slow" />
-                <div className="absolute bottom-0 left-[-10%] w-[50%] h-[50%] bg-accent/20 rounded-full blur-[120px] animate-pulse-slow delay-1000" />
+                <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-primary/15 rounded-full blur-[140px]" />
+                <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-accent/15 rounded-full blur-[140px]" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
             </div>
 
-            <div className="container mx-auto px-4 z-10 grid lg:grid-cols-2 gap-12 items-center">
-                {/* Text Content */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="space-y-6 text-center lg:text-left"
-                >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 border border-border/50 text-sm text-muted-foreground backdrop-blur-sm mx-auto lg:mx-0">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            {/* Grid pattern */}
+            <div
+                className="absolute inset-0 z-0 opacity-[0.03]"
+                style={{
+                    backgroundImage: `linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)`,
+                    backgroundSize: "60px 60px",
+                }}
+            />
+
+            <div className="container mx-auto px-4 z-10 py-20">
+                <div className="max-w-4xl mx-auto text-center">
+                    {/* Badge */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-sm text-primary font-medium mb-8"
+                    >
+                        <CalendarClock size={14} />
+                        Lista en 7 días hábiles. Sin excusas.
+                    </motion.div>
+
+                    {/* Headline */}
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        className="text-4xl sm:text-6xl md:text-7xl font-bold font-heading tracking-tight leading-[1.05] mb-6"
+                    >
+                        Tu negocio merece una web que{" "}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-pink-500">
+                            realmente venda
                         </span>
-                        Disponible para nuevos proyectos
-                    </div>
+                    </motion.h1>
 
-                    <h1 className="text-4xl md:text-6xl font-bold font-heading tracking-tight leading-tight">
-                        Transformamos ideas en <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Soluciones Digitales</span> de Alto Impacto
-                    </h1>
+                    {/* Subheadline */}
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-10"
+                    >
+                        Diseñamos landing pages que convierten visitantes en clientes.{" "}
+                        <span className="text-foreground font-medium">Sin backend complejo, sin procesos eternos.</span>{" "}
+                        En 7 días hábiles tenés tu página lista para recibir leads.
+                    </motion.p>
 
-                    <p className="text-lg text-muted-foreground leading-relaxed max-w-lg mx-auto lg:mx-0">
-                        Ayudamos a empresas y negocios a escalar con desarrollo web, automatizaciones, software e inteligencia artificial. Tu socio tecnológico estratégico.
-                    </p>
-
-                    <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
+                    {/* CTAs */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+                    >
                         <Button
+                            id="hero-cta-primary"
                             size="lg"
                             variant="premium"
-                            className="group"
-                            onClick={() => document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })}
+                            className="group text-base h-14 px-8 rounded-xl font-bold shadow-2xl shadow-primary/20"
+                            onClick={scrollToContact}
                         >
-                            Contactanos HOY 🚀
-                            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                            Quiero mi landing ahora
+                            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                         </Button>
                         <Button
+                            id="hero-cta-secondary"
                             size="lg"
                             variant="outline"
-                            className="h-11"
-                            onClick={() => document.getElementById('servicios')?.scrollIntoView({ behavior: 'smooth' })}
+                            className="text-base h-14 px-8 rounded-xl font-medium border-border/60 hover:border-primary/50"
+                            onClick={() => document.getElementById('como-funciona')?.scrollIntoView({ behavior: 'smooth' })}
                         >
-                            Ver nuestros servicios
+                            Ver cómo funciona
                         </Button>
-                    </div>
+                    </motion.div>
 
-                    <div className="pt-8 flex items-center gap-2 text-sm text-muted-foreground justify-center lg:justify-start">
-                        <p>Más de <span className="text-foreground font-semibold">50+ empresas</span> confían en nosotros.</p>
-                    </div>
-                </motion.div>
+                    {/* Social proof bar */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.5 }}
+                        className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 text-sm text-muted-foreground"
+                    >
+                        {[
+                            { stat: "7 días", label: "entrega garantizada" },
+                            { stat: "100%", label: "orientada a conversión" },
+                            { stat: "Sin sorpresas", label: "precio fijo" },
+                        ].map((item, i) => (
+                            <div key={i} className="flex items-center gap-2">
+                                <span className="text-primary font-bold text-base">{item.stat}</span>
+                                <span>{item.label}</span>
+                            </div>
+                        ))}
+                    </motion.div>
+                </div>
 
-                {/* Visual Element */}
+                {/* Mock preview */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative hidden lg:block"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    className="mt-20 max-w-5xl mx-auto relative"
                 >
-                    {/* Abstract Layout Mockup */}
-                    <div className="relative w-full aspect-square max-w-lg mx-auto bg-gradient-to-br from-gray-800/20 to-gray-900/20 rounded-2xl border border-white/5 p-6 backdrop-blur-sm group">
-
-                        {/* Floating Card: Engagement */}
-                        <motion.div
-                            animate={{ y: [0, -15, 0], x: [0, 5, 0] }}
-                            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                            className="absolute top-0 -left-12 bg-black/80 p-4 rounded-xl border border-white/10 w-48 shadow-2xl z-30"
-                        >
-                            <div className="flex items-center gap-3 mb-2">
-                                <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center">
-                                    <span className="text-purple-400 text-xs">❤</span>
-                                </div>
-                                <div>
-                                    <div className="text-xs text-muted-foreground">Engagement</div>
-                                    <div className="text-sm font-bold text-white">+84%</div>
-                                </div>
+                    <div className="relative rounded-2xl border border-white/10 bg-secondary/20 backdrop-blur-sm overflow-hidden shadow-2xl shadow-black/40">
+                        {/* Browser bar */}
+                        <div className="flex items-center gap-2 px-4 py-3 bg-secondary/40 border-b border-white/5">
+                            <div className="flex gap-1.5">
+                                <div className="w-3 h-3 rounded-full bg-red-400/60" />
+                                <div className="w-3 h-3 rounded-full bg-yellow-400/60" />
+                                <div className="w-3 h-3 rounded-full bg-green-400/60" />
                             </div>
-                            <div className="w-full bg-gray-800 h-1.5 rounded-full overflow-hidden">
-                                <div className="bg-purple-500 h-full w-[84%]" />
-                            </div>
-                        </motion.div>
-
-                        {/* Floating Card: Active Automations */}
-                        <motion.div
-                            animate={{ y: [0, -10, 0] }}
-                            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1 }}
-                            className="absolute top-10 -right-8 bg-black/80 p-5 rounded-xl border border-white/10 w-48 shadow-2xl z-20"
-                        >
-                            <div className="flex items-center gap-3 mb-3">
-                                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                                    <Zap className="w-4 h-4 text-primary" />
-                                </div>
-                                <div className="space-y-0.5">
-                                    <div className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Automatizaciones</div>
-                                    <div className="text-sm font-extrabold text-white">Activas: +7</div>
-                                </div>
-                            </div>
-                            <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
-                                <motion.div
-                                    animate={{ width: ["0%", "70%"] }}
-                                    transition={{ duration: 1, delay: 1.5 }}
-                                    className="bg-primary h-full"
-                                />
-                            </div>
-                        </motion.div>
-
-                        {/* Floating Card: Leads */}
-                        <motion.div
-                            animate={{ y: [0, 20, 0], rotate: [0, 2, 0] }}
-                            transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 0.5 }}
-                            className="absolute bottom-32 -right-16 bg-background/90 p-4 rounded-xl border border-white/10 w-40 shadow-2xl z-30"
-                        >
-                            <div className="flex items-center gap-2 mb-2">
-                                <div className="w-3 h-3 rounded-full bg-green-500" />
-                                <span className="text-xs font-bold">Nuevos Leads</span>
-                            </div>
-                            <div className="text-2xl font-bold font-heading">248</div>
-                            <div className="text-xs text-green-500 flex items-center gap-1">
-                                ▲ 12% vs mes anterior
-                            </div>
-                        </motion.div>
-
-                        {/* Floating Card: Revenue (Existing) */}
-                        <motion.div
-                            animate={{ y: [0, 15, 0] }}
-                            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 2 }}
-                            className="absolute bottom-10 -left-6 bg-background/90 p-4 rounded-xl border border-white/10 w-56 shadow-2xl z-30"
-                        >
-                            <div className="flex items-center gap-3 mb-3">
-                                <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center text-green-500 font-bold">
-                                    $
-                                </div>
-                                <div>
-                                    <div className="text-sm font-semibold">Crecimiento</div>
-                                    <div className="text-xs text-green-400">+124.5%</div>
-                                </div>
-                            </div>
-                            <div className="h-24 w-full bg-gray-900/50 rounded-lg flex items-end gap-1 p-2">
-                                <div className="w-full bg-primary/40 h-[40%] rounded-sm" />
-                                <div className="w-full bg-primary/60 h-[70%] rounded-sm" />
-                                <div className="w-full bg-primary/80 h-[50%] rounded-sm" />
-                                <div className="w-full bg-primary h-[85%] rounded-sm" />
-                            </div>
-                        </motion.div>
-
-                        {/* Central Abstract UI */}
-                        <div className="w-full h-full bg-black/40 rounded-xl border border-white/5 p-4 relative overflow-hidden">
-                            <div className="w-full h-8 bg-white/5 rounded-lg mb-4 flex items-center px-4 gap-2">
-                                <div className="w-3 h-3 rounded-full bg-red-400/50" />
-                                <div className="w-3 h-3 rounded-full bg-yellow-400/50" />
-                                <div className="w-3 h-3 rounded-full bg-green-400/50" />
-                            </div>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="h-32 bg-white/5 rounded-lg border border-white/5" />
-                                <div className="h-32 bg-white/5 rounded-lg border border-white/5" />
-                                <div className="col-span-2 h-24 bg-gradient-to-r from-primary/20 to-accent/20 rounded-lg border border-white/5" />
+                            <div className="flex-1 mx-4 h-6 bg-white/5 rounded-md flex items-center px-3">
+                                <span className="text-xs text-muted-foreground">tunegocio.com</span>
                             </div>
                         </div>
 
-                        {/* Decorative Circle */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent rounded-full blur-3xl -z-10" />
+                        {/* Fake landing content */}
+                        <div className="p-6 md:p-10 space-y-6">
+                            {/* Hero fake */}
+                            <div className="space-y-3">
+                                <div className="h-3 w-24 bg-primary/30 rounded-full" />
+                                <div className="h-8 w-3/4 bg-white/10 rounded-lg" />
+                                <div className="h-8 w-2/3 bg-white/8 rounded-lg" />
+                                <div className="h-4 w-full bg-white/5 rounded-md" />
+                                <div className="h-4 w-5/6 bg-white/5 rounded-md" />
+                                <div className="flex gap-3 pt-2">
+                                    <div className="h-10 w-40 bg-gradient-to-r from-primary/80 to-accent/80 rounded-lg" />
+                                    <div className="h-10 w-32 bg-white/10 rounded-lg border border-white/10" />
+                                </div>
+                            </div>
+
+                            {/* Stats row */}
+                            <div className="grid grid-cols-3 gap-4 pt-4">
+                                {[0.6, 0.85, 0.45].map((w, i) => (
+                                    <div key={i} className="bg-white/5 rounded-xl p-4 space-y-2 border border-white/5">
+                                        <div className="h-6 w-16 bg-primary/30 rounded" />
+                                        <div style={{ width: `${w * 100}%` }} className="h-3 bg-white/10 rounded" />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Glow effect */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
                     </div>
+
+                    {/* Floating metrics */}
+                    <motion.div
+                        animate={{ y: [0, -8, 0] }}
+                        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                        className="absolute -top-4 -right-4 md:-right-8 bg-background/95 border border-white/10 rounded-2xl p-4 shadow-2xl hidden sm:block"
+                    >
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center text-green-400 font-bold text-lg">↑</div>
+                            <div>
+                                <div className="text-xs text-muted-foreground">Conversión</div>
+                                <div className="text-lg font-bold text-green-400">+340%</div>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        animate={{ y: [0, 8, 0] }}
+                        transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
+                        className="absolute -bottom-4 -left-4 md:-left-8 bg-background/95 border border-white/10 rounded-2xl p-4 shadow-2xl hidden sm:block"
+                    >
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary font-bold text-lg">✓</div>
+                            <div>
+                                <div className="text-xs text-muted-foreground">Entregado en</div>
+                                <div className="text-lg font-bold">7 días</div>
+                            </div>
+                        </div>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>

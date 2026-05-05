@@ -1,22 +1,27 @@
 import { Hero } from "@/components/sections/Hero";
-import { Services } from "@/components/sections/Services";
-import { Packages } from "@/components/sections/Packages";
-import { About } from "@/components/sections/About";
-import { TechStack } from "@/components/sections/TechStack";
-
-import { Testimonials } from "@/components/sections/Testimonials";
-import { Contact } from "@/components/sections/Contact";
+import { PainPoints } from "@/components/sections/PainPoints";
+import { Solution } from "@/components/sections/Solution";
+import { HowItWorks } from "@/components/sections/HowItWorks";
+import { Benefits } from "@/components/sections/Benefits";
+import { Examples } from "@/components/sections/Examples";
+import { Pricing } from "@/components/sections/Pricing";
+import { Guarantee } from "@/components/sections/Guarantee";
+import { FAQ } from "@/components/sections/FAQ";
+import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Hero />
-      <TechStack />
-      <About />
-      <Services />
-      <Packages />
-      <Testimonials />
-      <Contact />
+      <PainPoints />
+      <Solution />
+      <HowItWorks />
+      <Benefits />
+      <Examples />
+      <Pricing />
+      <Guarantee />
+      <FAQ />
+      <FinalCTA />
     </main>
   );
 }
