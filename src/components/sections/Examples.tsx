@@ -53,7 +53,7 @@ export function Examples() {
                 </div>
                 <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {examples.map((ex, index) => (
-                        <motion.div key={ex.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.12 }} className="group relative flex flex-col rounded-3xl border border-border/40 bg-background/50 backdrop-blur-sm overflow-hidden hover:border-border/80 transition-all duration-300 hover:-translate-y-1">
+                        <motion.div key={ex.name} initial={{ opacity: 0, y: 30, scale: 0.95 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.12, type: "spring", stiffness: 100 }} whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.25 } }} className="group relative flex flex-col rounded-3xl border border-border/40 bg-background/50 backdrop-blur-sm overflow-hidden hover:border-border/80 transition-all duration-300">
                             <div className={`relative h-56 bg-gradient-to-br ${ex.color} p-6 flex flex-col justify-end overflow-hidden`}>
                                 <div className="absolute inset-0 opacity-10">
                                     <div className="h-full w-full" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, white 1px, transparent 1px)", backgroundSize: "20px 20px" }} />

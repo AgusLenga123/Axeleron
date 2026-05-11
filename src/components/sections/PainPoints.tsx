@@ -63,9 +63,9 @@ export function PainPoints() {
                 </div>
                 <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                     {painPoints.map((pain, index) => (
-                        <motion.div key={pain.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className={`group relative flex gap-5 p-6 rounded-2xl border border-border/50 bg-secondary/10 backdrop-blur-sm transition-all duration-300 ${pain.border} hover:bg-secondary/20`}>
+                        <motion.div key={pain.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }} whileHover={{ y: -4, transition: { duration: 0.25 } }} className={`group relative flex gap-5 p-6 rounded-2xl border border-border/50 bg-secondary/10 backdrop-blur-sm transition-all duration-300 ${pain.border} hover:bg-secondary/20`}>
                             <div className={`absolute inset-0 bg-gradient-to-br ${pain.color} opacity-0 group-hover:opacity-30 rounded-2xl transition-opacity duration-300`} />
-                            <div className={`relative flex-shrink-0 w-12 h-12 rounded-xl ${pain.iconBg} flex items-center justify-center`}>
+                            <div className={`relative flex-shrink-0 w-12 h-12 rounded-xl ${pain.iconBg} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                                 <pain.icon className={`w-6 h-6 ${pain.iconColor}`} />
                             </div>
                             <div className="relative">

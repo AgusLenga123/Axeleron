@@ -22,8 +22,8 @@ export function Navbar() {
     const navLinks = [
         { name: "Cómo funciona", href: "#como-funciona" },
         { name: "Planes", href: "#planes" },
-        { name: "Ejemplos", href: "#ejemplos" },
-        { name: "FAQ", href: "#faq" },
+        // { name: "Ejemplos", href: "#ejemplos" }, // Hidden - not deleted
+        // { name: "FAQ", href: "#faq" }, // Hidden - not deleted
     ];
 
     const scrollToContact = () => {
@@ -40,7 +40,7 @@ export function Navbar() {
             <div className="container mx-auto px-4 h-20 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                     <span className="text-2xl md:text-3xl font-bold font-heading tracking-tighter">
-                        Axeleron <span className="text-primary">🚀</span>
+                        Axeliron <span className="text-primary">🚀</span>
                     </span>
                 </Link>
 

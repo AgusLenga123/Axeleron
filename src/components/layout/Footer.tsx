@@ -8,7 +8,7 @@ export function Footer() {
                 <div className="grid md:grid-cols-4 gap-10 mb-12">
                     <div className="md:col-span-2 space-y-4">
                         <Link href="/" className="text-xl font-bold font-heading tracking-tighter hover:opacity-80 transition-opacity inline-block">
-                            Axeleron <span className="text-primary">🚀</span>
+                            Axeliron <span className="text-primary">🚀</span>
                         </Link>
                         <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
                             Creamos landing pages que convierten visitantes en clientes. Rápido, claro y enfocado en resultados.
@@ -52,7 +52,7 @@ export function Footer() {
                 </div>
 
                 <div className="border-t border-border/40 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-                    <p>© {new Date().getFullYear()} Axeleron. Todos los derechos reservados.</p>
+                    <p>© {new Date().getFullYear()} Axeliron. Todos los derechos reservados.</p>
                     <div className="flex gap-6">
                         <Link href="#" className="hover:text-foreground transition-colors">Privacidad</Link>
                         <Link href="#" className="hover:text-foreground transition-colors">Términos</Link>

@@ -34,7 +34,7 @@ export function Solution() {
                         </motion.p>
                         <motion.ul initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="space-y-3 mb-10">
                             {included.map((item, i) => (
-                                <motion.li key={i} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.06 }} className="flex items-start gap-3 text-sm">
+                                <motion.li key={i} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.06, type: "spring", stiffness: 120 }} className="flex items-start gap-3 text-sm">
                                     <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center mt-0.5">
                                         <Check className="w-3 h-3 text-primary" />
                                     </div>
@@ -49,7 +49,7 @@ export function Solution() {
                             </Button>
                         </motion.div>
                     </div>
-                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative">
+                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="relative">
                         <div className="relative bg-gradient-to-br from-secondary/40 to-secondary/10 rounded-3xl border border-border/50 p-8 backdrop-blur-sm overflow-hidden">
                             <div className="absolute top-0 right-0 w-48 h-48 bg-primary/10 blur-[80px] rounded-full" />
                             <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/10 blur-[80px] rounded-full" />
@@ -65,7 +65,7 @@ export function Solution() {
                                         </div>
                                     </div>
                                     <div className="bg-green-500/5 border border-green-500/20 rounded-2xl p-5">
-                                        <p className="text-xs text-green-400 font-bold uppercase tracking-widest mb-3">Con Axeleron</p>
+                                        <p className="text-xs text-green-400 font-bold uppercase tracking-widest mb-3">Con Axeliron</p>
                                         <div className="space-y-2">
                                             <div className="flex items-center gap-2 text-xs text-muted-foreground"><span className="text-green-400">✓</span> Leads todos los días</div>
                                             <div className="flex items-center gap-2 text-xs text-muted-foreground"><span className="text-green-400">✓</span> Ads que retornan</div>

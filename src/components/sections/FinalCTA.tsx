@@ -20,8 +20,8 @@ export function FinalCTA() {
 
     const whatsappMessage = encodeURIComponent(
         selectedPlan
-            ? `Hola! Me interesa el plan ${selectedPlan} de Axeleron para crear mi landing page. ¿Podemos hablar?`
-            : "Hola! Me interesa crear una landing page con Axeleron. ¿Podemos hablar?"
+            ? `Hola! Me interesa el plan ${selectedPlan} de Axeliron para crear mi landing page. ¿Podemos hablar?`
+            : "Hola! Me interesa crear una landing page con Axeliron. ¿Podemos hablar?"
     );
 
     return (
@@ -34,19 +34,19 @@ export function FinalCTA() {
                     <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-primary font-semibold text-sm uppercase tracking-widest mb-6">
                         ¿Listo para arrancar?
                     </motion.p>
-                    <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-4xl md:text-6xl font-bold font-heading mb-6 leading-tight">
+                    <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ type: "spring", stiffness: 80 }} className="text-4xl md:text-6xl font-bold font-heading mb-6 leading-tight">
                         Tu landing puede estar{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-pink-500">online en 7 días</span>
                     </motion.h2>
                     <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-muted-foreground text-lg mb-12 leading-relaxed">
                         Cada día que pasa sin una landing optimizada es un día que perdés leads potenciales. La conversación inicial es gratis y sin compromiso.
                     </motion.p>
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+                    <motion.div initial={{ opacity: 0, y: 20, scale: 0.95 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2, type: "spring", stiffness: 100 }} className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
                         <Button id="final-cta-whatsapp" size="lg" className="group h-14 px-8 rounded-xl font-bold text-base bg-green-500 hover:bg-green-600 text-white shadow-2xl shadow-green-500/20 border-0" onClick={() => window.open(`https://wa.me/5491100000000?text=${whatsappMessage}`, '_blank')}>
                             <MessageCircle className="mr-2 h-5 w-5" />
                             Escribinos por WhatsApp
                         </Button>
-                        <Button id="final-cta-call" size="lg" variant="premium" className="group h-14 px-8 rounded-xl font-bold text-base shadow-2xl shadow-primary/20" onClick={() => window.open(`https://wa.me/5491100000000?text=${whatsappMessage}`, '_blank')}>
+                        <Button id="final-cta-call" size="lg" variant="premium" className="group h-14 px-8 rounded-xl font-bold text-base shadow-2xl shadow-primary/20" onClick={() => window.open('https://calendly.com/axeliron/reunion-axeliron-team', '_blank')}>
                             <Phone className="mr-2 h-5 w-5" />
                             Agendá una llamada
                         </Button>

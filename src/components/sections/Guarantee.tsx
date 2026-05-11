@@ -11,13 +11,17 @@ export function Guarantee() {
             <GridBackground opacity={0.025} size={60} />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/8 via-transparent to-transparent pointer-events-none" />
             <div className="container mx-auto px-4 relative z-10">
-                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-4xl mx-auto">
+                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ type: "spring", stiffness: 80 }} className="max-w-4xl mx-auto">
                     <div className="relative rounded-3xl border border-primary/20 bg-background/60 backdrop-blur-sm overflow-hidden p-10 md:p-16">
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-40 bg-primary/15 blur-[80px] rounded-full" />
                         <div className="relative text-center">
-                            <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-primary/10 border border-primary/20 mb-8">
+                            <motion.div
+                                animate={{ y: [0, -6, 0] }}
+                                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                                className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-primary/10 border border-primary/20 mb-8"
+                            >
                                 <ShieldCheck className="w-10 h-10 text-primary" />
-                            </div>
+                            </motion.div>
                             <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">Nuestra garantía</motion.p>
                             <h2 className="text-3xl md:text-5xl font-bold font-heading mb-6">
                                 Si no te gusta, lo rehacemos.{" "}

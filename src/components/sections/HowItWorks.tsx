@@ -11,10 +11,10 @@ const steps = [
         number: "01",
         icon: MessageSquare,
         emoji: "🗓️",
-        title: "Agendás una llamada de 30 min",
+        title: "Agendás una llamada de 45 min",
         duration: "Día 1",
         durationDetail: "Primer día hábil",
-        description: "Contanos tu negocio, a quién le vendés y qué querés lograr. Sin formularios complicados, sin documentos eternos. Una charla de 30 minutos es todo lo que necesitamos para arrancar.",
+        description: "Contanos tu negocio, a quién le vendés y qué querés lograr. Sin formularios complicados, sin documentos eternos. Una charla de 45 minutos es todo lo que necesitamos para arrancar.",
         details: [
             "Entendemos tu negocio, tu cliente ideal y tu propuesta de valor",
             "Definimos juntos qué tiene que lograr la landing (leads, ventas, turnos)",
@@ -25,7 +25,7 @@ const steps = [
             label: "Lo que pasa en esta etapa",
             items: [
                 { icon: Users, text: "Llamada 1:1 por Zoom o Meet" },
-                { icon: Clock, text: "30 minutos, sin perder tiempo" },
+                { icon: Clock, text: "45 minutos, sin perder tiempo" },
                 { icon: Zap, text: "Arrancamos al día siguiente" },
             ],
         },
