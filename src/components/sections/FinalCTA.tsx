@@ -42,7 +42,7 @@ export function FinalCTA() {
                         Cada día que pasa sin una landing optimizada es un día que perdés leads potenciales. La conversación inicial es gratis y sin compromiso.
                     </motion.p>
                     <motion.div initial={{ opacity: 0, y: 20, scale: 0.95 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2, type: "spring", stiffness: 100 }} className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-                        <Button id="final-cta-whatsapp" size="lg" className="group h-14 px-8 rounded-xl font-bold text-base bg-green-500 hover:bg-green-600 text-white shadow-2xl shadow-green-500/20 border-0" onClick={() => window.open(`https://wa.me/5491100000000?text=${whatsappMessage}`, '_blank')}>
+                        <Button id="final-cta-whatsapp" size="lg" className="group h-14 px-8 rounded-xl font-bold text-base bg-green-500 hover:bg-green-600 text-white shadow-2xl shadow-green-500/20 border-0" onClick={() => window.open(`https://wa.me/5491136515953?text=${whatsappMessage}`, '_blank')}>
                             <MessageCircle className="mr-2 h-5 w-5" />
                             Escribinos por WhatsApp
                         </Button>

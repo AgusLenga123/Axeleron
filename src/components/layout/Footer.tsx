@@ -38,7 +38,7 @@ export function Footer() {
                         <h4 className="font-bold mb-4 text-sm">Contacto</h4>
                         <ul className="space-y-2 text-sm text-muted-foreground">
                             <li>
-                                <Link href="https://wa.me/5491100000000" target="_blank" className="hover:text-primary transition-colors">
+                                <Link href="https://wa.me/5491136515953" target="_blank" className="hover:text-primary transition-colors">
                                     WhatsApp
                                 </Link>
                             </li>
