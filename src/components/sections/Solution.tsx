@@ -16,7 +16,7 @@ const included = [
 
 export function Solution() {
     return (
-        <section id="servicio" className="py-24 bg-background relative overflow-hidden">
+        <section id="servicio" className="py-16 bg-background relative overflow-hidden">
             <GridBackground opacity={0.03} size={60} />
             <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
             <div className="container mx-auto px-4 relative z-10">

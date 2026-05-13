@@ -25,7 +25,7 @@ export function FinalCTA() {
     );
 
     return (
-        <section id="contacto" className="py-24 bg-secondary/10 relative overflow-hidden">
+        <section id="contacto" className="py-16 bg-secondary/10 relative overflow-hidden">
             <GridBackground opacity={0.025} size={60} />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" />
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />

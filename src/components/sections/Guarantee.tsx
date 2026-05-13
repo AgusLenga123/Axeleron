@@ -7,7 +7,7 @@ import { GridBackground } from "@/components/ui/GridBackground";
 
 export function Guarantee() {
     return (
-        <section id="garantia" className="py-24 bg-secondary/10 relative overflow-hidden">
+        <section id="garantia" className="py-16 bg-secondary/10 relative overflow-hidden">
             <GridBackground opacity={0.025} size={60} />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/8 via-transparent to-transparent pointer-events-none" />
             <div className="container mx-auto px-4 relative z-10">
