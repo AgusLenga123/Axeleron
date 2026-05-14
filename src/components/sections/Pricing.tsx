@@ -6,12 +6,11 @@ import { Check, ArrowRight, Sparkles, ShieldCheck, Clock, Star, Zap, TrendingUp,
 import { GridBackground } from "@/components/ui/GridBackground";
 
 const features = [
-    "Landing de hasta 10 secciones",
+    "Landing 100% funcional",
     "Copywriting persuasivo incluido",
     "Diseño premium con animaciones",
     "Entrega en 7 días hábiles",
     "2 rondas de revisiones",
-    "Integración con Meta Pixel y Google Ads",
     "Formulario + WhatsApp + Email",
     "Optimización SEO básica",
 ];

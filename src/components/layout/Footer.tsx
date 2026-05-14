@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Linkedin, Instagram } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 export function Footer() {
     return (
@@ -14,10 +14,7 @@ export function Footer() {
                             Creamos landing pages que convierten visitantes en clientes. Rápido, claro y enfocado en resultados.
                         </p>
                         <div className="flex gap-3 pt-2">
-                            <Link href="#" className="p-2 rounded-full bg-secondary hover:bg-primary/20 hover:text-primary transition-colors" aria-label="LinkedIn">
-                                <Linkedin size={16} />
-                            </Link>
-                            <Link href="#" className="p-2 rounded-full bg-secondary hover:bg-primary/20 hover:text-primary transition-colors" aria-label="Instagram">
+                            <Link href="https://www.instagram.com/axeliron_/" target="_blank" className="p-2 rounded-full bg-secondary hover:bg-primary/20 hover:text-primary transition-colors" aria-label="Instagram">
                                 <Instagram size={16} />
                             </Link>
                         </div>
@@ -43,8 +40,8 @@ export function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="mailto:hola@axeleron.com" className="hover:text-primary transition-colors">
-                                    hola@axeleron.com
+                                <Link href="mailto:hola@axeliron.com" className="hover:text-primary transition-colors">
+                                    hola@axeliron.com
                                 </Link>
                             </li>
                         </ul>
