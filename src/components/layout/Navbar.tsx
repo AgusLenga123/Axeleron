@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { buttonVariants } from "@/components/ui/button";
 
 export function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -25,10 +24,6 @@ export function Navbar() {
         // { name: "Ejemplos", href: "#ejemplos" }, // Hidden - not deleted
         // { name: "FAQ", href: "#faq" }, // Hidden - not deleted
     ];
-
-    const scrollToContact = () => {
-        document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
-    };
 
     return (
         <nav
@@ -55,13 +50,12 @@ export function Navbar() {
                             {link.name}
                         </Link>
                     ))}
-                    <Button
-                        variant="premium"
-                        className="font-semibold px-5"
-                        onClick={scrollToContact}
+                    <a
+                        href="#contacto"
+                        className={cn(buttonVariants({ variant: "premium" }), "font-semibold px-5")}
                     >
                         Quiero mi landing →
-                    </Button>
+                    </a>
                 </div>
 
                 {/* Mobile Toggle */}
@@ -70,45 +64,40 @@ export function Navbar() {
                     className="md:hidden p-2 text-foreground"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     aria-label="Toggle menu"
+                    aria-expanded={isMobileMenuOpen}
                 >
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
 
             {/* Mobile Menu */}
-            <AnimatePresence>
-                {isMobileMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-background border-b border-border overflow-hidden"
-                    >
-                        <div className="flex flex-col p-4 gap-4">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className="text-sm font-medium text-foreground hover:text-primary transition-colors py-1"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
-                            <Button
-                                className="w-full"
-                                variant="premium"
-                                onClick={() => {
-                                    setIsMobileMenuOpen(false);
-                                    scrollToContact();
-                                }}
-                            >
-                                Quiero mi landing →
-                            </Button>
-                        </div>
-                    </motion.div>
+            <div
+                className={cn(
+                    "md:hidden bg-background border-b border-border overflow-hidden transition-[max-height,opacity] duration-300",
+                    isMobileMenuOpen ? "max-h-96 opacity-100 pointer-events-auto" : "max-h-0 opacity-0 pointer-events-none"
                 )}
-            </AnimatePresence>
+                aria-hidden={!isMobileMenuOpen}
+            >
+                <div className="flex flex-col p-4 gap-4">
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.name}
+                            href={link.href}
+                            className="text-sm font-medium text-foreground hover:text-primary transition-colors py-1"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            {link.name}
+                        </Link>
+                    ))}
+                    <a
+                        href="#contacto"
+                        className={cn(buttonVariants({ variant: "premium" }), "w-full justify-center")}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        Quiero mi landing →
+                    </a>
+                </div>
+            </div>
         </nav>
     );
 }

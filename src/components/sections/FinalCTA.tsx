@@ -1,22 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { useSearchParams } from "next/navigation";
+import { buttonVariants } from "@/components/ui/button";
 import { MessageCircle, Phone, Send } from "lucide-react";
 import { GridBackground } from "@/components/ui/GridBackground";
+import { cn } from "@/lib/utils";
 
 export function FinalCTA() {
-    const [selectedPlan, setSelectedPlan] = useState("");
-
-    useEffect(() => {
-        const handler = (e: Event) => {
-            const customEvent = e as CustomEvent;
-            setSelectedPlan(customEvent.detail || "");
-        };
-        window.addEventListener('selectPlan', handler);
-        return () => window.removeEventListener('selectPlan', handler);
-    }, []);
+    const searchParams = useSearchParams();
+    const selectedPlan = searchParams?.get("plan")?.trim() ?? "";
 
     const whatsappMessage = encodeURIComponent(
         selectedPlan
@@ -31,27 +23,45 @@ export function FinalCTA() {
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-3xl mx-auto text-center">
-                    <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-primary font-semibold text-sm uppercase tracking-widest mb-6">
+                    <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-6">
                         ¿Listo para arrancar?
-                    </motion.p>
-                    <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ type: "spring", stiffness: 80 }} className="text-4xl md:text-6xl font-bold font-heading mb-6 leading-tight">
+                    </p>
+                    <h2 className="text-4xl md:text-6xl font-bold font-heading mb-6 leading-tight">
                         Tu landing puede estar{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-pink-500">online en 7 días</span>
-                    </motion.h2>
-                    <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-muted-foreground text-lg mb-12 leading-relaxed">
+                    </h2>
+                    <p className="text-muted-foreground text-lg mb-12 leading-relaxed">
                         Cada día que pasa sin una landing optimizada es un día que perdés leads potenciales. La conversación inicial es gratis y sin compromiso.
-                    </motion.p>
-                    <motion.div initial={{ opacity: 0, y: 20, scale: 0.95 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2, type: "spring", stiffness: 100 }} className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-                        <Button id="final-cta-whatsapp" size="lg" className="group h-14 px-8 rounded-xl font-bold text-base bg-green-500 hover:bg-green-600 text-white shadow-2xl shadow-green-500/20 border-0" onClick={() => window.open(`https://wa.me/5491136515953?text=${whatsappMessage}`, '_blank')}>
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+                        <a
+                            id="final-cta-whatsapp"
+                            href={`https://wa.me/5491136515953?text=${whatsappMessage}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className={cn(
+                                buttonVariants({ size: "lg" }),
+                                "group h-14 px-8 rounded-xl font-bold text-base bg-green-500 hover:bg-green-600 text-white shadow-2xl shadow-green-500/20 border-0"
+                            )}
+                        >
                             <MessageCircle className="mr-2 h-5 w-5" />
                             Escribinos por WhatsApp
-                        </Button>
-                        <Button id="final-cta-call" size="lg" variant="premium" className="group h-14 px-8 rounded-xl font-bold text-base shadow-2xl shadow-primary/20" onClick={() => window.open('https://calendly.com/axeliron/reunion-axeliron-team', '_blank')}>
+                        </a>
+                        <a
+                            id="final-cta-call"
+                            href="https://calendly.com/axeliron/reunion-axeliron-team"
+                            target="_blank"
+                            rel="noreferrer"
+                            className={cn(
+                                buttonVariants({ variant: "premium", size: "lg" }),
+                                "group h-14 px-8 rounded-xl font-bold text-base shadow-2xl shadow-primary/20"
+                            )}
+                        >
                             <Phone className="mr-2 h-5 w-5" />
                             Agendá una llamada
-                        </Button>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.4 }} className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
+                        </a>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
                         {[
                             { icon: Send, text: "Respuesta en menos de 24 hs" },
                             { icon: Phone, text: "Llamada sin compromiso" },
@@ -62,7 +72,7 @@ export function FinalCTA() {
                                 <span>{item.text}</span>
                             </div>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>

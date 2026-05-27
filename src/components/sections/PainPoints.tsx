@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { WifiOff, TrendingDown, Clock, DollarSign } from "lucide-react";
 import { GridBackground } from "@/components/ui/GridBackground";
 
@@ -50,20 +47,20 @@ export function PainPoints() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-secondary/30 via-transparent to-transparent pointer-events-none" />
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-3xl mx-auto text-center mb-16">
-                    <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">
+                    <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">
                         ¿Te suena familiar?
-                    </motion.p>
-                    <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl md:text-5xl font-bold font-heading mb-6">
+                    </p>
+                    <h2 className="text-3xl md:text-5xl font-bold font-heading mb-6">
                         Tenés tráfico pero{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400">no convertís</span>
-                    </motion.h2>
-                    <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-muted-foreground text-lg">
+                    </h2>
+                    <p className="text-muted-foreground text-lg">
                         Si alguno de estos escenarios te describe, estás en el lugar correcto.
-                    </motion.p>
+                    </p>
                 </div>
                 <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                    {painPoints.map((pain, index) => (
-                        <motion.div key={pain.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }} whileHover={{ y: -4, transition: { duration: 0.25 } }} className={`group relative flex gap-5 p-6 rounded-2xl border border-border/50 bg-secondary/10 backdrop-blur-sm transition-all duration-300 ${pain.border} hover:bg-secondary/20`}>
+                    {painPoints.map((pain) => (
+                        <div key={pain.title} className={`group relative flex gap-5 p-6 rounded-2xl border border-border/50 bg-secondary/10 backdrop-blur-sm transition-all duration-300 ${pain.border} hover:bg-secondary/20 hover:-translate-y-1`}>
                             <div className={`absolute inset-0 bg-gradient-to-br ${pain.color} opacity-0 group-hover:opacity-30 rounded-2xl transition-opacity duration-300`} />
                             <div className={`relative flex-shrink-0 w-12 h-12 rounded-xl ${pain.iconBg} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                                 <pain.icon className={`w-6 h-6 ${pain.iconColor}`} />
@@ -72,15 +69,15 @@ export function PainPoints() {
                                 <h3 className="font-bold text-lg mb-2">{pain.title}</h3>
                                 <p className="text-muted-foreground text-sm leading-relaxed">{pain.description}</p>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }} className="text-center mt-12">
+                <div className="text-center mt-12">
                     <p className="text-muted-foreground text-lg">
                         El problema casi nunca es el producto.{" "}
                         <span className="text-foreground font-semibold">El problema es cómo lo estás comunicando en tu web.</span>
                     </p>
-                </motion.div>
+                </div>
             </div>
         </section>
     );
