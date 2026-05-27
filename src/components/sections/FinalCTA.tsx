@@ -1,21 +1,9 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
-import { buttonVariants } from "@/components/ui/button";
+import { Suspense } from "react";
 import { MessageCircle, Phone, Send } from "lucide-react";
 import { GridBackground } from "@/components/ui/GridBackground";
-import { cn } from "@/lib/utils";
+import { FinalCTAButtons } from "@/components/sections/FinalCTAButtons";
 
 export function FinalCTA() {
-    const searchParams = useSearchParams();
-    const selectedPlan = searchParams?.get("plan")?.trim() ?? "";
-
-    const whatsappMessage = encodeURIComponent(
-        selectedPlan
-            ? `Hola! Me interesa el plan ${selectedPlan} de Axeliron para crear mi landing page. ¿Podemos hablar?`
-            : "Hola! Me interesa crear una landing page con Axeliron. ¿Podemos hablar?"
-    );
-
     return (
         <section id="contacto" className="py-16 bg-secondary/10 relative overflow-hidden">
             <GridBackground opacity={0.025} size={60} />
@@ -34,32 +22,9 @@ export function FinalCTA() {
                         Cada día que pasa sin una landing optimizada es un día que perdés leads potenciales. La conversación inicial es gratis y sin compromiso.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-                        <a
-                            id="final-cta-whatsapp"
-                            href={`https://wa.me/5491136515953?text=${whatsappMessage}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            className={cn(
-                                buttonVariants({ size: "lg" }),
-                                "group h-14 px-8 rounded-xl font-bold text-base bg-green-500 hover:bg-green-600 text-white shadow-2xl shadow-green-500/20 border-0"
-                            )}
-                        >
-                            <MessageCircle className="mr-2 h-5 w-5" />
-                            Escribinos por WhatsApp
-                        </a>
-                        <a
-                            id="final-cta-call"
-                            href="https://calendly.com/axeliron/reunion-axeliron-team"
-                            target="_blank"
-                            rel="noreferrer"
-                            className={cn(
-                                buttonVariants({ variant: "premium", size: "lg" }),
-                                "group h-14 px-8 rounded-xl font-bold text-base shadow-2xl shadow-primary/20"
-                            )}
-                        >
-                            <Phone className="mr-2 h-5 w-5" />
-                            Agendá una llamada
-                        </a>
+                        <Suspense fallback={null}>
+                            <FinalCTAButtons />
+                        </Suspense>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
                         {[
