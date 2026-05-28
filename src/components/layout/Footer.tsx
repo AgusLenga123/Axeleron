@@ -14,7 +14,7 @@ export function Footer() {
                             Creamos landing pages que convierten visitantes en clientes. Rápido, claro y enfocado en resultados.
                         </p>
                         <div className="flex gap-3 pt-2">
-                            <Link href="https://www.instagram.com/axeliron_/" target="_blank" className="p-2 rounded-full bg-secondary hover:bg-primary/20 hover:text-primary transition-colors" aria-label="Instagram">
+                            <Link href="https://www.instagram.com/_axeliron_/" target="_blank" className="p-2 rounded-full bg-secondary hover:bg-primary/20 hover:text-primary transition-colors" aria-label="Instagram">
                                 <Instagram size={16} />
                             </Link>
                         </div>
