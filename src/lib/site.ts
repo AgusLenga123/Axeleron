@@ -10,7 +10,7 @@ export const site = {
     whatsappMessage: "Hola! Quiero mi landing de USD 300 con Axeliron. ¿Hablamos?",
     calendlyUrl: "https://calendly.com/axeliron/reunion-axeliron-team",
     email: "hola@axeliron.com",
-    instagram: "https://www.instagram.com/axeliron_/",
+    instagram: "https://www.instagram.com/_axeliron_/",
 };
 
 export const whatsappHref = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;

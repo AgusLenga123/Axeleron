@@ -1,9 +1,7 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { MessageSquare, Palette, Rocket, CheckCircle2, Clock, Users, Zap } from "lucide-react";
 import { GridBackground } from "@/components/ui/GridBackground";
+import { cn } from "@/lib/utils";
 
 const steps = [
     {
@@ -95,37 +93,29 @@ export function HowItWorks() {
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
                 <div className="text-center max-w-3xl mx-auto mb-12">
-                    <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">
+                    <p className="text-primary font-semibold text-sm uppercase tracking-widest mb-4">
                         El proceso
-                    </motion.p>
-                    <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl md:text-5xl font-bold font-heading mb-6">
+                    </p>
+                    <h2 className="text-3xl md:text-5xl font-bold font-heading mb-6">
                         De cero a online en{" "}
                         <span className="inline-block whitespace-nowrap">
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">SOLO 7 DÍAS</span>
                             {" "}
-                            <motion.span
-                                animate={{ rotate: [0, -12, 12, -12, 0], scale: [1, 1.25, 1, 1.25, 1] }}
-                                transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-                                className="inline-block"
-                            >
+                            <span className="inline-block">
                                 🔥
-                            </motion.span>
+                            </span>
                         </span>
-                    </motion.h2>
-                    <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-muted-foreground text-lg">
+                    </h2>
+                    <p className="text-muted-foreground text-lg">
                         Sin reuniones interminables. Así es el proceso, paso a paso.
-                    </motion.p>
+                    </p>
                 </div>
 
                 {/* 3-column static grid */}
                 <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {steps.map((s, i) => (
-                        <motion.div
+                        <div
                             key={i}
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.45, delay: i * 0.1 }}
                             className={`relative rounded-2xl border ${s.borderColor} bg-background/60 backdrop-blur-sm overflow-hidden flex flex-col`}
                         >
                             {/* Gradient background */}
@@ -182,27 +172,20 @@ export function HowItWorks() {
                                     </ul>
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
 
                 {/* CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                    className="flex justify-center mt-10"
-                >
-                    <Button
+                <div className="flex justify-center mt-10">
+                    <a
                         id="how-it-works-cta"
-                        variant="premium"
-                        className="h-12 px-8 rounded-xl font-bold"
-                        onClick={() => document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' })}
+                        href="#contacto"
+                        className={cn(buttonVariants({ variant: "premium" }), "h-12 px-8 rounded-xl font-bold")}
                     >
                         ¡Arrancamos! →
-                    </Button>
-                </motion.div>
+                    </a>
+                </div>
             </div>
         </section>
     );
