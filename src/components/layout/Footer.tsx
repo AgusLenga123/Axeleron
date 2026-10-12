@@ -1,5 +1,5 @@
-import { Instagram, Mail, MessageCircle } from "lucide-react";
-import { site, whatsappHref } from "@/lib/site";
+import { Mail } from "lucide-react";
+import { site } from "@/lib/site";
 import { Logo } from "./Navbar";
 
 export function Footer() {
@@ -22,18 +22,8 @@ export function Footer() {
                     </ul>
                     <ul className="space-y-2.5 text-muted-foreground">
                         <li>
-                            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground">
-                                <MessageCircle className="h-4 w-4" /> WhatsApp
-                            </a>
-                        </li>
-                        <li>
                             <a href={`mailto:${site.email}`} className="flex items-center gap-2 hover:text-foreground">
                                 <Mail className="h-4 w-4" /> {site.email}
-                            </a>
-                        </li>
-                        <li>
-                            <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground">
-                                <Instagram className="h-4 w-4" /> Instagram
                             </a>
                         </li>
                     </ul>

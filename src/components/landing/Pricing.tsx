@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Check, ShieldCheck } from "lucide-react";
-import { site, whatsappHref } from "@/lib/site";
+import { site } from "@/lib/site";
 import { CtaButton, Reveal, SectionHeading, Serif } from "./ui";
 
 const included = [
@@ -62,8 +62,8 @@ export function Pricing() {
                                     <CtaButton href="#agendar" className="h-14 w-full text-base">
                                         Reservar mi lugar
                                     </CtaButton>
-                                    <CtaButton href={whatsappHref} external variant="ghost" arrow={false} className="h-12 w-full">
-                                        Prefiero escribir por WhatsApp
+                                    <CtaButton href="#faq" variant="ghost" arrow={false} className="h-12 w-full">
+                                        Tengo dudas
                                     </CtaButton>
                                 </div>
                             </div>

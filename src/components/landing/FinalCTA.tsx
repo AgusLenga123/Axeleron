@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { MessageCircle } from "lucide-react";
-import { site, whatsappHref } from "@/lib/site";
+import { site } from "@/lib/site";
 import { CtaButton, Reveal, Serif } from "./ui";
 
 export function FinalCTA() {
@@ -23,8 +22,8 @@ export function FinalCTA() {
                         <CtaButton href="#agendar" className="h-14 w-full px-8 text-base sm:w-auto">
                             Quiero mi landing por USD {site.price}
                         </CtaButton>
-                        <CtaButton href={whatsappHref} external variant="ghost" arrow={false} className="h-14 w-full px-8 text-base sm:w-auto">
-                            <MessageCircle className="h-4 w-4" /> Hablar por WhatsApp
+                        <CtaButton href="#disenos" variant="ghost" arrow={false} className="h-14 w-full px-8 text-base sm:w-auto">
+                            Ver diseños
                         </CtaButton>
                     </div>
                     <p className="mt-6 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
@@ -36,7 +35,7 @@ export function FinalCTA() {
     );
 }
 
-/** Botón flotante de WhatsApp + barra fija en mobile, visibles después del hero. */
+/** Barra fija en mobile, visible después del hero. */
 export function StickyCTA() {
     const [visible, setVisible] = useState(false);
 
@@ -52,18 +51,7 @@ export function StickyCTA() {
     }, []);
 
     return (
-        <>
-            <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Escribinos por WhatsApp"
-                className="fixed bottom-6 right-6 z-40 hidden h-14 w-14 place-items-center rounded-full bg-[#25D366] text-black shadow-[0_10px_40px_-5px_rgba(37,211,102,0.6)] transition-transform hover:scale-105 md:grid"
-            >
-                <MessageCircle className="h-6 w-6" />
-            </a>
-
-            <AnimatePresence>
+        <AnimatePresence>
                 {visible && (
                     <motion.div
                         initial={{ y: 100, opacity: 0 }}
@@ -76,21 +64,11 @@ export function StickyCTA() {
                             <span className="font-semibold">USD {site.price}</span>
                             <span className="text-muted-foreground"> · {site.deliveryDays} días</span>
                         </span>
-                        <a
-                            href={whatsappHref}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="WhatsApp"
-                            className="grid h-10 w-10 place-items-center rounded-full bg-[#25D366] text-black"
-                        >
-                            <MessageCircle className="h-4 w-4" />
-                        </a>
                         <a href="#agendar" className="rounded-full bg-white px-4 py-2.5 text-sm font-medium text-black">
                             Agendar
                         </a>
                     </motion.div>
                 )}
-            </AnimatePresence>
-        </>
+        </AnimatePresence>
     );
 }

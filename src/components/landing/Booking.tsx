@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { CalendarDays, Loader2, MessageCircle } from "lucide-react";
-import { site, whatsappHref } from "@/lib/site";
+import { CalendarDays, Loader2, Mail } from "lucide-react";
+import { site } from "@/lib/site";
 import { Eyebrow, Reveal, Serif } from "./ui";
 
 const calendlySrc = `${site.calendlyUrl}?hide_gdpr_banner=1&background_color=0e0e13&text_color=f5f5f7&primary_color=8b5cf6`;
@@ -51,20 +51,18 @@ export function Booking() {
 
                         <Reveal delay={0.2}>
                             <div className="mt-10 flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-surface p-4">
-                                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[#25D366]/10">
-                                    <MessageCircle className="h-5 w-5 text-[#25D366]" />
+                                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-cyan/10">
+                                    <Mail className="h-5 w-5 text-cyan" />
                                 </span>
                                 <div className="flex-1 text-sm">
                                     <p className="font-medium">¿Preferís escribirnos?</p>
                                     <p className="text-muted-foreground">Respondemos en menos de 24 hs.</p>
                                 </div>
                                 <a
-                                    href={whatsappHref}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="rounded-full bg-[#25D366] px-4 py-2 text-sm font-medium text-black transition-opacity hover:opacity-90"
+                                    href={`mailto:${site.email}`}
+                                    className="rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition-opacity hover:opacity-90"
                                 >
-                                    WhatsApp
+                                    Email
                                 </a>
                             </div>
                         </Reveal>
