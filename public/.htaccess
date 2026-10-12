@@ -1,0 +1,8 @@
+# Forzar HTTPS (también detrás de proxy/CDN que informe X-Forwarded-Proto)
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Página 404 del sitio estático
+ErrorDocument 404 /404.html
