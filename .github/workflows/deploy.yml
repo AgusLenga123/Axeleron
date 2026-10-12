@@ -23,9 +23,9 @@ jobs:
     env:
       FTP_SERVER: ${{ secrets.FTP_SERVER }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
@@ -41,6 +41,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          # DonWeb exige TLS en el canal de control (FTPS explícito, puerto 21)
+          protocol: ftps
+          port: 21
           local-dir: ./out/
           server-dir: ${{ vars.FTP_SERVER_DIR || './public_html/' }}
 
