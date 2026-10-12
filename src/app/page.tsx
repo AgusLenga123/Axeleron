@@ -1,27 +1,28 @@
-import { Hero } from "@/components/sections/Hero";
-import { PainPoints } from "@/components/sections/PainPoints";
-import { Solution } from "@/components/sections/Solution";
-import { HowItWorks } from "@/components/sections/HowItWorks";
-// import { Benefits } from "@/components/sections/Benefits"; // Hidden - not deleted
-// import { Examples } from "@/components/sections/Examples"; // Hidden - not deleted
-import { Pricing } from "@/components/sections/Pricing";
-import { Guarantee } from "@/components/sections/Guarantee";
-// import { FAQ } from "@/components/sections/FAQ"; // Hidden - not deleted
-import { FinalCTA } from "@/components/sections/FinalCTA";
+import { Hero } from "@/components/landing/Hero";
+import { Marquee } from "@/components/landing/Marquee";
+import { Speed } from "@/components/landing/Speed";
+import { Showcase } from "@/components/landing/Showcase";
+import { Conversion } from "@/components/landing/Conversion";
+import { Process } from "@/components/landing/Process";
+import { Pricing } from "@/components/landing/Pricing";
+import { Booking } from "@/components/landing/Booking";
+import { FAQ } from "@/components/landing/FAQ";
+import { FinalCTA, StickyCTA } from "@/components/landing/FinalCTA";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen overflow-x-clip bg-background text-foreground">
       <Hero />
-      <PainPoints />
-      <Solution />
-      <HowItWorks />
-      {/* <Benefits /> */}{/* Hidden - not deleted */}
-      {/* <Examples /> */}{/* Hidden - not deleted */}
+      <Marquee />
+      <Speed />
+      <Showcase />
+      <Conversion />
+      <Process />
       <Pricing />
-      <Guarantee />
-      {/* <FAQ /> */}{/* Hidden - not deleted */}
+      <Booking />
+      <FAQ />
       <FinalCTA />
+      <StickyCTA />
     </main>
   );
 }

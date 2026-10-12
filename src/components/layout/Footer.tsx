@@ -1,60 +1,52 @@
-import Link from "next/link";
-import { Instagram } from "lucide-react";
+import { Instagram, Mail, MessageCircle } from "lucide-react";
+import { site, whatsappHref } from "@/lib/site";
+import { Logo } from "./Navbar";
 
 export function Footer() {
     return (
-        <footer className="bg-background border-t border-border/40 pt-16 pb-8">
-            <div className="container mx-auto px-4">
-                <div className="grid md:grid-cols-4 gap-10 mb-12">
-                    <div className="md:col-span-2 space-y-4">
-                        <Link href="/" className="text-xl font-bold font-heading tracking-tighter hover:opacity-80 transition-opacity inline-block">
-                            Axeliron <span className="text-primary">🚀</span>
-                        </Link>
-                        <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-                            Creamos landing pages que convierten visitantes en clientes. Rápido, claro y enfocado en resultados.
-                        </p>
-                        <div className="flex gap-3 pt-2">
-                            <Link href="https://www.instagram.com/axeliron_/" target="_blank" className="p-2 rounded-full bg-secondary hover:bg-primary/20 hover:text-primary transition-colors" aria-label="Instagram">
-                                <Instagram size={16} />
-                            </Link>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h4 className="font-bold mb-4 text-sm">Navegación</h4>
-                        <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li><Link href="#como-funciona" className="hover:text-primary transition-colors">Cómo funciona</Link></li>
-                            <li><Link href="#planes" className="hover:text-primary transition-colors">Planes</Link></li>
-                            <li><Link href="#ejemplos" className="hover:text-primary transition-colors">Ejemplos</Link></li>
-                            <li><Link href="#garantia" className="hover:text-primary transition-colors">Garantía</Link></li>
-                            <li><Link href="#faq" className="hover:text-primary transition-colors">FAQ</Link></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="font-bold mb-4 text-sm">Contacto</h4>
-                        <ul className="space-y-2 text-sm text-muted-foreground">
-                            <li>
-                                <Link href="https://wa.me/5491136515953" target="_blank" className="hover:text-primary transition-colors">
-                                    WhatsApp
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="mailto:hola@axeliron.com" className="hover:text-primary transition-colors">
-                                    hola@axeliron.com
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+        <footer className="border-t border-white/[0.06] pb-24 pt-14 md:pb-10">
+            <div className="mx-auto max-w-6xl flex flex-col gap-10 px-4 md:flex-row md:items-start md:justify-between">
+                <div className="max-w-xs space-y-3">
+                    <Logo />
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                        Landing pages que convierten visitas en clientes. Online en {site.deliveryDays} días, por USD {site.price}.
+                    </p>
                 </div>
 
-                <div className="border-t border-border/40 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-                    <p>© {new Date().getFullYear()} Axeliron. Todos los derechos reservados.</p>
-                    <div className="flex gap-6">
-                        <Link href="#" className="hover:text-foreground transition-colors">Privacidad</Link>
-                        <Link href="#" className="hover:text-foreground transition-colors">Términos</Link>
-                    </div>
-                </div>
+                <nav className="flex gap-12 text-sm" aria-label="Pie de página">
+                    <ul className="space-y-2.5 text-muted-foreground">
+                        <li><a href="#proceso" className="hover:text-foreground">Proceso</a></li>
+                        <li><a href="#disenos" className="hover:text-foreground">Diseños</a></li>
+                        <li><a href="#precio" className="hover:text-foreground">Precio</a></li>
+                        <li><a href="#faq" className="hover:text-foreground">FAQ</a></li>
+                    </ul>
+                    <ul className="space-y-2.5 text-muted-foreground">
+                        <li>
+                            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground">
+                                <MessageCircle className="h-4 w-4" /> WhatsApp
+                            </a>
+                        </li>
+                        <li>
+                            <a href={`mailto:${site.email}`} className="flex items-center gap-2 hover:text-foreground">
+                                <Mail className="h-4 w-4" /> {site.email}
+                            </a>
+                        </li>
+                        <li>
+                            <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground">
+                                <Instagram className="h-4 w-4" /> Instagram
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div className="mx-auto max-w-6xl mt-12 px-4">
+                <p className="select-none bg-gradient-to-b from-white/[0.07] to-transparent bg-clip-text text-center text-[22vw] font-semibold leading-none tracking-[-0.06em] text-transparent md:text-[min(16vw,230px)]">
+                    Axeliron
+                </p>
+                <p className="mt-6 text-center text-xs text-muted-foreground">
+                    © {new Date().getFullYear()} Axeliron. Todos los derechos reservados.
+                </p>
             </div>
         </footer>
     );

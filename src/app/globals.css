@@ -3,6 +3,8 @@
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -12,40 +14,57 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-violet: var(--violet);
+  --color-cyan: var(--cyan);
+  --color-lime: var(--lime);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  --animate-fade-in: fade-in 0.5s ease-out;
-  --animate-slide-up: slide-up 0.5s ease-out;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-slow: marquee 70s linear infinite;
+  --animate-pulse-ring: pulse-ring 2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+  --animate-shine: shine 5s linear infinite;
 
-  @keyframes fade-in {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
-  @keyframes slide-up {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(2.6); opacity: 0; }
+  }
+  @keyframes shine {
+    from { background-position: 200% center; }
+    to { background-position: -200% center; }
   }
 }
 
 :root {
-  --background: #020617; /* Slate 950 */
-  --foreground: #f8fafc; /* Slate 50 */
-  
-  --primary: #6366f1; /* Indigo 500 */
+  --background: #07070a;
+  --foreground: #f5f5f7;
+  --surface: #0e0e13;
+  --surface-2: #15151c;
+
+  --violet: #8b5cf6;
+  --cyan: #22d3ee;
+  --lime: #a3e635;
+
+  --primary: #8b5cf6;
   --primary-foreground: #ffffff;
-  
-  --secondary: #1e293b; /* Slate 800 */
-  --secondary-foreground: #f8fafc;
-  
-  --accent: #8b5cf6; /* Violet 500 */
-  --accent-foreground: #ffffff;
-  
-  --muted: #0f172a; /* Slate 900 */
-  --muted-foreground: #94a3b8; /* Slate 400 */
-  
-  --border: #1e293b; /* Slate 800 */
+  --secondary: #15151c;
+  --secondary-foreground: #f5f5f7;
+  --accent: #22d3ee;
+  --accent-foreground: #07070a;
+  --muted: #0e0e13;
+  --muted-foreground: #9898a6;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+html {
+  color-scheme: dark;
 }
 
 body {
@@ -53,23 +72,77 @@ body {
   color: var(--foreground);
 }
 
-/* Subtle shimmer for gradient text on hover */
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+/* Gradiente de marca (violeta → cian) para texto destacado */
+.text-brand {
+  background-image: linear-gradient(100deg, var(--violet) 0%, #a78bfa 35%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.shimmer-text {
-  background-size: 200% auto;
-  animation: shimmer 3s linear infinite;
+.text-shine {
+  background-image: linear-gradient(110deg, #f5f5f7 35%, #a78bfa 45%, #67e8f9 55%, #f5f5f7 65%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-/* Smooth section transitions */
-section {
-  transition: opacity 0.3s ease;
+/* Borde con gradiente animado (botones y tarjeta de precio) */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
-/* Enhanced scrollbar */
+@keyframes spin-angle {
+  to { --angle: 360deg; }
+}
+
+.border-glow {
+  position: relative;
+  isolation: isolate;
+}
+.border-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--angle), transparent 0%, var(--violet) 15%, var(--cyan) 30%, transparent 45%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: spin-angle 5s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Ruido sutil para dar textura */
+.noise::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.35);
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -77,9 +150,17 @@ section {
   background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: #23232c;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
+  background: var(--violet);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }
