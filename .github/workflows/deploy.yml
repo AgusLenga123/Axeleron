@@ -47,6 +47,11 @@ jobs:
           export LFTP_PASSWORD="$FTP_PASSWORD"
           server="$(echo "$FTP_SERVER" | sed -E 's#^[a-z]+://##; s#/+$##' | tr -d '[:space:]')"
           set +e
+          {
+            echo "host: $(getent ahosts "$server" | awk '{print $1}' | sort -u | tr '\n' ' ')"
+            timeout 10 bash -c "echo > /dev/tcp/$server/21" && echo "puerto 21: abierto" || echo "puerto 21: sin respuesta"
+          } > diag.log 2>&1
+          cat diag.log
           lftp -d -u "$FTP_USERNAME" --env-password -e "
             set ftp:ssl-force true;
             set ftp:ssl-protect-data true;
@@ -63,7 +68,7 @@ jobs:
           grep -v -E '^---> PASS' lftp.log | tail -n 200
           if [ "$status" -ne 0 ]; then
             # Mostrar el error como anotación (visible sin iniciar sesión en GitHub), sin la contraseña
-            echo "::error title=lftp falló::$(grep -v -E 'PASS' lftp.log | grep -E '^(<---|\*\*\*\*|mirror|ls|cd|lftp)' | tail -n 30 | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')"
+            echo "::error title=lftp falló::$({ cat diag.log; grep -v -E 'PASS' lftp.log | tail -n 40; } | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')"
             exit "$status"
           fi
 
