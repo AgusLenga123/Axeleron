@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { Menu, Rocket, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { CtaButton } from "@/components/landing/ui";
@@ -16,11 +17,9 @@ const navLinks = [
 
 export function Logo({ className }: { className?: string }) {
     return (
-        <Link href="/" className={cn("group flex items-center gap-2", className)} aria-label="Axeliron, inicio">
-            <span className="relative grid h-7 w-7 place-items-center rounded-lg bg-gradient-to-br from-violet to-cyan">
-                <Rocket className="h-4 w-4 text-white" strokeWidth={2.2} aria-hidden />
-            </span>
-            <span className="text-[17px] font-semibold tracking-[-0.03em]">Axeliron</span>
+        <Link href="/" className={cn("flex items-center gap-1.5", className)} aria-label="Axeliron, inicio">
+            <Image src="/brand/logo-rocket.png" alt="" width={242} height={141} priority className="h-8 w-auto" />
+            <Image src="/brand/logo-wordmark.png" alt="Axeliron" width={246} height={42} priority className="h-[18px] w-auto" />
         </Link>
     );
 }
