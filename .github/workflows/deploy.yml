@@ -34,7 +34,7 @@ jobs:
 
       - run: npm run build
 
-      # DonWeb exige TLS en el canal de control y de datos; lftp lo maneja mejor que las actions de FTP en Node.
+      # DonWeb exige FTPS (TLS en control y datos). curl lo maneja bien, con reutilización de sesión TLS.
       - name: Subir sitio por FTPS
         if: env.FTP_SERVER != ''
         env:
@@ -42,34 +42,34 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           FTP_SERVER_DIR: ${{ vars.FTP_SERVER_DIR || 'public_html' }}
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
-          # La contraseña va por variable de entorno para no romperse con caracteres especiales
-          export LFTP_PASSWORD="$FTP_PASSWORD"
           server="$(echo "$FTP_SERVER" | sed -E 's#^[a-z]+://##; s#/+$##' | tr -d '[:space:]')"
-          set +e
-          {
-            echo "host: $(getent ahosts "$server" | awk '{print $1}' | sort -u | tr '\n' ' ')"
-            timeout 10 bash -c "echo > /dev/tcp/$server/21" && echo "puerto 21: abierto" || echo "puerto 21: sin respuesta"
-          } > diag.log 2>&1
-          cat diag.log
-          lftp -d -u "$FTP_USERNAME" --env-password -e "
-            set ftp:ssl-force true;
-            set ftp:ssl-protect-data true;
-            set ftp:passive-mode true;
-            set ssl:verify-certificate no;
-            set ssl:check-hostname no;
-            set net:max-retries 2;
-            set net:timeout 30;
-            set net:reconnect-interval-base 5;
-            mirror --reverse --verbose --parallel=2 ./out/ '$FTP_SERVER_DIR';
-            bye
-          " "ftp://$server" > lftp.log 2>&1
-          status=$?
-          grep -v -E '^---> PASS' lftp.log | tail -n 200
-          if [ "$status" -ne 0 ]; then
-            # Mostrar el error como anotación (visible sin iniciar sesión en GitHub), sin la contraseña
-            echo "::error title=lftp falló::$({ cat diag.log; grep -v -E 'PASS' lftp.log | tail -n 40; } | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')"
-            exit "$status"
+          dir="$(echo "$FTP_SERVER_DIR" | sed -E 's#^\./##; s#^/+##; s#/+$##')"
+          base="ftp://$server/${dir:+$dir/}"
+          # Credenciales en un archivo de config de curl: no se rompen con caracteres especiales
+          esc() { printf %s "$1" | sed 's/[\\"]/\\&/g'; }
+          printf 'user = "%s:%s"\n' "$(esc "$FTP_USERNAME")" "$(esc "$FTP_PASSWORD")" > "$RUNNER_TEMP/curl.cfg"
+          chmod 600 "$RUNNER_TEMP/curl.cfg"
+
+          cd out
+          total=0; failed=0
+          while IFS= read -r -d '' f; do
+            f="${f#./}"
+            total=$((total + 1))
+            if ! curl --config "$RUNNER_TEMP/curl.cfg" --ssl-reqd --insecure --ftp-pasv --ftp-create-dirs \
+                 --globoff --fail --silent --show-error --retry 2 --connect-timeout 20 \
+                 -T "$f" "$base${f// /%20}" 2>> ../upload.log; then
+              failed=$((failed + 1))
+              echo "falló: $f" >> ../upload.log
+            fi
+          done < <(find . -type f -print0)
+          cd ..
+          rm -f "$RUNNER_TEMP/curl.cfg"
+
+          echo "Subidos $((total - failed)) de $total archivos a $base"
+          if [ "$failed" -ne 0 ]; then
+            # Visible como anotación sin iniciar sesión en GitHub
+            echo "::error title=Falló la subida ($failed de $total)::$(head -n 20 upload.log | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')"
+            exit 1
           fi
 
       - name: Aviso de configuración pendiente
