@@ -1,8 +1,8 @@
-# Publica la landing en el hosting de DonWeb por FTP en cada push a main.
+# Publica la landing en el hosting de DonWeb por FTPS en cada push a main.
 #
 # Configuración (GitHub → Settings → Secrets and variables → Actions):
 #   Secrets:   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD
-#   Variable (opcional): FTP_SERVER_DIR  — carpeta del sitio en el servidor (por defecto ./public_html/)
+#   Variable (opcional): FTP_SERVER_DIR  — carpeta del sitio en el servidor (por defecto public_html)
 #
 # Mientras falten los secrets, el workflow igual compila el sitio pero saltea la subida.
 
@@ -34,18 +34,27 @@ jobs:
 
       - run: npm run build
 
-      - name: Subir sitio por FTP
+      # DonWeb exige TLS en el canal de control y de datos; lftp lo maneja mejor que las actions de FTP en Node.
+      - name: Subir sitio por FTPS
         if: env.FTP_SERVER != ''
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          # DonWeb exige TLS en el canal de control (FTPS explícito, puerto 21)
-          protocol: ftps
-          port: 21
-          local-dir: ./out/
-          server-dir: ${{ vars.FTP_SERVER_DIR || './public_html/' }}
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ vars.FTP_SERVER_DIR || 'public_html' }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          # Credenciales vía .netrc para no romper contraseñas con caracteres especiales
+          printf 'machine %s login %s password %s\n' "$FTP_SERVER" "$FTP_USERNAME" "$FTP_PASSWORD" > ~/.netrc
+          chmod 600 ~/.netrc
+          lftp -e "
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ssl:verify-certificate no;
+            set net:max-retries 2;
+            set net:timeout 30;
+            mirror --reverse --verbose --parallel=4 ./out/ '$FTP_SERVER_DIR';
+            bye
+          " "$FTP_SERVER"
 
       - name: Aviso de configuración pendiente
         if: env.FTP_SERVER == ''
