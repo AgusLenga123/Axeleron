@@ -1,10 +1,8 @@
 # Publica la landing en DonWeb a través de su "Integración con Git".
 #
 # En cada push a main: compila el sitio estático (carpeta out/) y lo publica como un commit nuevo
-# en la rama `deploy` de este repo. DonWeb está conectado a esa rama y trae los cambios.
-#
-# Opcional (GitHub → Settings → Secrets and variables → Actions):
-#   Secret DONWEB_DEPLOY_HOOK — si DonWeb da una URL para disparar el deploy, se llama al final.
+# en la rama `deploy` de este repo. DonWeb está vinculado a esa rama y la trae cuando recibe el
+# webhook de GitHub (Settings → Webhooks, evento push, URL de deploy que da el panel de DonWeb).
 
 name: Deploy a DonWeb
 
@@ -24,8 +22,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    env:
-      DONWEB_DEPLOY_HOOK: ${{ secrets.DONWEB_DEPLOY_HOOK }}
     steps:
       - uses: actions/checkout@v5
 
@@ -67,7 +63,3 @@ jobs:
             git push origin deploy
             echo "Publicado en la rama deploy ($(git rev-parse --short HEAD))."
           fi
-
-      - name: Avisar a DonWeb
-        if: env.DONWEB_DEPLOY_HOOK != ''
-        run: curl -fsS -m 60 -X POST "$DONWEB_DEPLOY_HOOK" && echo "DonWeb notificado."
