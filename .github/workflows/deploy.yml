@@ -52,22 +52,44 @@ jobs:
           printf 'user = "%s:%s"\n' "$(esc "$FTP_USERNAME")" "$(esc "$FTP_PASSWORD")" > "$RUNNER_TEMP/curl.cfg"
           chmod 600 "$RUNNER_TEMP/curl.cfg"
 
-          cd out
-          total=0; failed=0
-          while IFS= read -r -d '' f; do
-            f="${f#./}"
-            total=$((total + 1))
-            if ! curl --config "$RUNNER_TEMP/curl.cfg" --ssl-reqd --insecure --ftp-pasv --ftp-create-dirs \
-                 --globoff --fail --silent --show-error --retry 3 --retry-all-errors --connect-timeout 20 --max-time 60 \
-                 -T "$f" "$base${f// /%20}" 2>> ../upload.log; then
-              failed=$((failed + 1))
-              echo "falló: $f" >> ../upload.log
-            fi
-          # Primero CSS/JS/imágenes y al final los HTML: así nunca queda online una página que pide archivos que todavía no se subieron
-          done < <(find . -type f ! -name '*.html' -print0; find . -type f -name '*.html' -print0)
-          cd ..
-          rm -f "$RUNNER_TEMP/curl.cfg"
+          # Sube una lista de archivos con UN solo proceso de curl: reutiliza la conexión y el login
+          # (iniciar sesión una vez por archivo hacía que el servidor frenara o colgara las subidas).
+          upload() { # $1 = archivo con la lista (separada por \0), $2 = log de resultados
+            : > "$RUNNER_TEMP/batch.cfg"
+            while IFS= read -r -d '' f; do
+              printf 'upload-file = "%s"\nurl = "%s"\n' "$(esc "$f")" "$(esc "$base${f// /%20}")" >> "$RUNNER_TEMP/batch.cfg"
+            done < "$1"
+            curl --config "$RUNNER_TEMP/curl.cfg" --config "$RUNNER_TEMP/batch.cfg" \
+                 --ssl-reqd --insecure --ftp-pasv --ftp-create-dirs --globoff --silent --show-error \
+                 --retry 3 --retry-all-errors --connect-timeout 20 --max-time 120 \
+                 -w '%{response_code} %{url_effective}\n' > "$2" 2>> ../upload.log || true
+          }
 
+          cd out
+          # Primero CSS/JS/imágenes y al final los HTML: así nunca queda online una página que pide archivos que todavía no se subieron
+          { find . -type f ! -name '*.html' -printf '%P\0'; find . -type f -name '*.html' -printf '%P\0'; } > ../files.lst
+          total=$(tr -cd '\0' < ../files.lst | wc -c)
+
+          upload ../files.lst ../result.log
+          # Reintento de lo que haya fallado (226 = transferencia completa en FTP)
+          for pass in 1 2 3; do
+            : > ../retry.lst
+            while IFS= read -r -d '' f; do
+              grep -qxF "226 $base${f// /%20}" ../result.log || printf '%s\0' "$f" >> ../retry.lst
+            done < ../files.lst
+            [ -s ../retry.lst ] && [ "$pass" -lt 3 ] || break
+            echo "Reintentando $(tr -cd '\0' < ../retry.lst | wc -c) archivos (pasada $pass)"
+            upload ../retry.lst ../retry-result.log
+            cat ../retry-result.log >> ../result.log
+          done
+          cd ..
+          rm -f "$RUNNER_TEMP/curl.cfg" "$RUNNER_TEMP/batch.cfg"
+
+          failed=0
+          if [ -s retry.lst ]; then
+            failed=$(tr -cd '\0' < retry.lst | wc -c)
+            tr '\0' '\n' < retry.lst | sed 's/^/falló: /' >> upload.log
+          fi
           echo "Subidos $((total - failed)) de $total archivos a $base"
           if [ "$failed" -ne 0 ]; then
             # Visible como anotación sin iniciar sesión en GitHub
