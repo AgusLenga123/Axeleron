@@ -15,11 +15,13 @@ on:
 
 concurrency:
   group: deploy-donweb
-  cancel-in-progress: false
+  # Un deploy nuevo cancela al que esté corriendo (igual sube todo de nuevo)
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     env:
       FTP_SERVER: ${{ secrets.FTP_SERVER }}
     steps:
@@ -56,7 +58,7 @@ jobs:
             f="${f#./}"
             total=$((total + 1))
             if ! curl --config "$RUNNER_TEMP/curl.cfg" --ssl-reqd --insecure --ftp-pasv --ftp-create-dirs \
-                 --globoff --fail --silent --show-error --retry 2 --connect-timeout 20 \
+                 --globoff --fail --silent --show-error --retry 3 --retry-all-errors --connect-timeout 20 --max-time 60 \
                  -T "$f" "$base${f// /%20}" 2>> ../upload.log; then
               failed=$((failed + 1))
               echo "falló: $f" >> ../upload.log
