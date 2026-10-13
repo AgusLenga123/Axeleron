@@ -36,7 +36,8 @@ jobs:
 
       - run: npm run build
 
-      # DonWeb exige FTPS (TLS en control y datos). curl lo maneja bien, con reutilización de sesión TLS.
+      # DonWeb exige FTPS (TLS en control y datos). Su servidor (ProFTPD) pide reutilizar la sesión TLS en la
+      # conexión de datos y con TLS 1.3 eso falla de forma intermitente (subidas colgadas): por eso --tls-max 1.2.
       - name: Subir sitio por FTPS
         if: env.FTP_SERVER != ''
         env:
@@ -60,7 +61,7 @@ jobs:
               printf 'upload-file = "%s"\nurl = "%s"\n' "$(esc "$f")" "$(esc "$base${f// /%20}")" >> "$RUNNER_TEMP/batch.cfg"
             done < "$1"
             curl --config "$RUNNER_TEMP/curl.cfg" --config "$RUNNER_TEMP/batch.cfg" \
-                 --ssl-reqd --insecure --ftp-pasv --ftp-create-dirs --globoff --silent --show-error \
+                 --ssl-reqd --insecure --tls-max 1.2 --ftp-pasv --ftp-create-dirs --globoff --silent --show-error \
                  --retry 3 --retry-all-errors --connect-timeout 20 --max-time 120 \
                  -w '%{response_code} %{url_effective}\n' > "$2" 2>> ../upload.log || true
           }
