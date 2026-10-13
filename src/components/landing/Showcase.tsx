@@ -228,9 +228,9 @@ const designs: Design[] = [
     { label: "Psicología", style: "Cálido & editorial", Comp: PsychCard, href: "/rubros/psicologia/" },
     { label: "SaaS", style: "Tech & gradientes", Comp: SaasCard, href: "/rubros/saas/" },
     { label: "Inmobiliaria", style: "Limpio & confiable", Comp: RealEstateCard, href: "/rubros/inmobiliaria/" },
-    { label: "Estudio jurídico", style: "Clásico & premium", Comp: LawCard },
-    { label: "Cafetería", style: "Artesanal & cálido", Comp: CafeCard },
-    { label: "Curso online", style: "Urgencia & venta", Comp: CourseCard },
+    { label: "Estudio jurídico", style: "Clásico & premium", Comp: LawCard, href: "/rubros/estudio-juridico/" },
+    { label: "Gastronomía", style: "Artesanal & cálido", Comp: CafeCard, href: "/rubros/gastronomia/" },
+    { label: "Curso online", style: "Urgencia & venta", Comp: CourseCard, href: "/rubros/cursos-online/" },
 ];
 
 export function Showcase() {

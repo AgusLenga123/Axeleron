@@ -17,7 +17,7 @@ export function CalculatorShell({
     ctaLabel,
 }: {
     children: React.ReactNode;
-    before?: { label: string; value: number; suffix?: string };
+    before?: { label: string; value: number; suffix?: string; strike?: boolean };
     main: { label: string; value: number; suffix?: string };
     secondary?: React.ReactNode;
     payback?: React.ReactNode;
@@ -32,7 +32,7 @@ export function CalculatorShell({
                     {before && (
                         <>
                             <p className="text-sm text-muted-foreground">{before.label}</p>
-                            <p className="mb-8 mt-1 text-2xl font-semibold tracking-tight text-white/60 line-through decoration-white/30">
+                            <p className={`mb-8 mt-1 text-2xl font-semibold tracking-tight text-white/60 ${before.strike === false ? "" : "line-through decoration-white/30"}`}>
                                 <Money value={before.value} />
                                 {before.suffix}
                             </p>

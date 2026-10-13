@@ -19,7 +19,7 @@ export function SaasCalculator() {
 
     return (
         <CalculatorShell
-            before={{ label: "MRR nuevo que suma tu web hoy, cada mes", value: mrrToday, suffix: " /mes" }}
+            before={{ label: "MRR nuevo que suma tu web hoy, cada mes", value: mrrToday, suffix: " /mes", strike: false }}
             main={{ label: "MRR extra que suma cada mes con una landing optimizada", value: extra, suffix: " /mes" }}
             secondary={
                 <>

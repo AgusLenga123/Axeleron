@@ -21,7 +21,7 @@ export function DeviceDemo({ url, screenBg = "#f6f2ea", children }: { url: strin
                 <p className="flex items-center gap-2 text-sm text-muted-foreground">
                     <MousePointer2 className="h-4 w-4 text-cyan" />
                     <span>
-                        Es interactiva: scrolleá dentro de la pantalla y probá el buscador.
+                        Es interactiva: scrolleá dentro de la pantalla y tocá los botones.
                         {device === "desktop" && <span className="sm:hidden"> Tocá “Celular” para verla en tamaño real.</span>}
                     </span>
                 </p>
