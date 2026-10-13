@@ -76,7 +76,7 @@ export function HotelLanding() {
             </div>
 
             {/* Hero */}
-            <section className="relative overflow-hidden">
+            <section className="relative overflow-clip">
                 <div className="relative h-[420px] @3xl:h-[520px]">
                     <MountainLake />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />

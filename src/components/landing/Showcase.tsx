@@ -224,10 +224,10 @@ type Design = { label: string; style: string; Comp: () => React.JSX.Element; hre
 // Los rubros con `href` tienen su propia página de caso en /rubros/<slug>.
 const designs: Design[] = [
     { label: "Hotelería", style: "Natural & premium", Comp: HotelCard, href: "/rubros/hoteleria/" },
-    { label: "Coach fitness", style: "Bold & enérgico", Comp: CoachCard },
-    { label: "Psicóloga", style: "Cálido & editorial", Comp: PsychCard },
-    { label: "SaaS", style: "Tech & gradientes", Comp: SaasCard },
-    { label: "Inmobiliaria", style: "Limpio & confiable", Comp: RealEstateCard },
+    { label: "Coach fitness", style: "Bold & enérgico", Comp: CoachCard, href: "/rubros/coach-fitness/" },
+    { label: "Psicología", style: "Cálido & editorial", Comp: PsychCard, href: "/rubros/psicologia/" },
+    { label: "SaaS", style: "Tech & gradientes", Comp: SaasCard, href: "/rubros/saas/" },
+    { label: "Inmobiliaria", style: "Limpio & confiable", Comp: RealEstateCard, href: "/rubros/inmobiliaria/" },
     { label: "Estudio jurídico", style: "Clásico & premium", Comp: LawCard },
     { label: "Cafetería", style: "Artesanal & cálido", Comp: CafeCard },
     { label: "Curso online", style: "Urgencia & venta", Comp: CourseCard },

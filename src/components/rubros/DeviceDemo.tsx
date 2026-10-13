@@ -12,7 +12,7 @@ const DESKTOP_H = 760;
  * Muestra una landing de ejemplo dentro de una pantalla de computadora (escalada para
  * entrar en cualquier ancho) o de un celular. El contenido se puede scrollear e interactuar.
  */
-export function DeviceDemo({ url, children }: { url: string; children: React.ReactNode }) {
+export function DeviceDemo({ url, screenBg = "#f6f2ea", children }: { url: string; screenBg?: string; children: React.ReactNode }) {
     const [device, setDevice] = useState<"desktop" | "mobile">("desktop");
 
     return (
@@ -60,7 +60,7 @@ export function DeviceDemo({ url, children }: { url: string; children: React.Rea
                     exit={{ opacity: 0, y: -8, filter: "blur(6px)" }}
                     transition={{ duration: 0.35 }}
                 >
-                    {device === "desktop" ? <DesktopFrame url={url}>{children}</DesktopFrame> : <PhoneFrame>{children}</PhoneFrame>}
+                    {device === "desktop" ? <DesktopFrame url={url}>{children}</DesktopFrame> : <PhoneFrame screenBg={screenBg}>{children}</PhoneFrame>}
                 </motion.div>
             </AnimatePresence>
         </div>
@@ -95,10 +95,11 @@ function DesktopFrame({ url, children }: { url: string; children: React.ReactNod
                     </div>
                     <span className="hidden w-[52px] sm:block" />
                 </div>
-                <div ref={ref} style={{ height: DESKTOP_H * scale }} className="relative overflow-hidden">
+                <div ref={ref} style={{ height: DESKTOP_H * scale }} className="relative overflow-clip">
                     <div
                         style={{ width: DESKTOP_W, height: DESKTOP_H, transform: `scale(${scale})`, transformOrigin: "top left" }}
-                        className="overflow-y-auto overscroll-contain [scrollbar-width:thin]"
+                        data-demo-scroll
+                        className="overflow-y-auto overflow-x-hidden overscroll-contain [scrollbar-width:thin]"
                     >
                         {children}
                     </div>
@@ -110,14 +111,16 @@ function DesktopFrame({ url, children }: { url: string; children: React.ReactNod
     );
 }
 
-function PhoneFrame({ children }: { children: React.ReactNode }) {
+function PhoneFrame({ screenBg, children }: { screenBg: string; children: React.ReactNode }) {
     return (
         <div className="relative mx-auto w-[min(100%,390px)]">
             <div className="pointer-events-none absolute -inset-10 -z-10 rounded-full bg-gradient-to-b from-violet/25 via-cyan/10 to-transparent blur-3xl" />
             <div className="rounded-[48px] border border-white/15 bg-[#0c0c11] p-3 shadow-[0_40px_120px_-30px_rgba(0,0,0,0.9)]">
                 <div className="relative overflow-hidden rounded-[38px]">
                     <div className="absolute left-1/2 top-2 z-40 h-6 w-24 -translate-x-1/2 rounded-full bg-black" />
-                    <div className="h-[720px] max-h-[75vh] overflow-y-auto overscroll-contain pt-10 [scrollbar-width:none] bg-[#f6f2ea]">{children}</div>
+                    <div data-demo-scroll style={{ background: screenBg }} className="h-[720px] max-h-[75vh] overflow-y-auto overflow-x-hidden overscroll-contain pt-10 [scrollbar-width:none]">
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>
