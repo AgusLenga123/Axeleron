@@ -1,4 +1,5 @@
 const niches = [
+    "Hoteles",
     "Coaches",
     "Clínicas",
     "Odontólogos",

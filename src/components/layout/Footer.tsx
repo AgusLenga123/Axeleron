@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Mail } from "lucide-react";
 import { site } from "@/lib/site";
 import { Logo } from "./Navbar";
@@ -15,10 +16,10 @@ export function Footer() {
 
                 <nav className="flex gap-12 text-sm" aria-label="Pie de página">
                     <ul className="space-y-2.5 text-muted-foreground">
-                        <li><a href="#proceso" className="hover:text-foreground">Proceso</a></li>
-                        <li><a href="#disenos" className="hover:text-foreground">Diseños</a></li>
-                        <li><a href="#precio" className="hover:text-foreground">Precio</a></li>
-                        <li><a href="#faq" className="hover:text-foreground">FAQ</a></li>
+                        <li><Link href="/#proceso" className="hover:text-foreground">Proceso</Link></li>
+                        <li><Link href="/#disenos" className="hover:text-foreground">Diseños</Link></li>
+                        <li><Link href="/#precio" className="hover:text-foreground">Precio</Link></li>
+                        <li><Link href="/#faq" className="hover:text-foreground">FAQ</Link></li>
                     </ul>
                     <ul className="space-y-2.5 text-muted-foreground">
                         <li>

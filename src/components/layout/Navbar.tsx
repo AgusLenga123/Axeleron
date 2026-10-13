@@ -9,10 +9,10 @@ import { cn } from "@/lib/utils";
 import { CtaButton } from "@/components/landing/ui";
 
 const navLinks = [
-    { name: "Proceso", href: "#proceso" },
-    { name: "Diseños", href: "#disenos" },
-    { name: "Precio", href: "#precio" },
-    { name: "FAQ", href: "#faq" },
+    { name: "Proceso", href: "/#proceso" },
+    { name: "Diseños", href: "/#disenos" },
+    { name: "Precio", href: "/#precio" },
+    { name: "FAQ", href: "/#faq" },
 ];
 
 export function Logo({ className }: { className?: string }) {
@@ -49,13 +49,13 @@ export function Navbar() {
 
                 <div className="hidden items-center gap-1 md:flex">
                     {navLinks.map((link) => (
-                        <a
+                        <Link
                             key={link.name}
                             href={link.href}
                             className="rounded-full px-4 py-2 text-sm text-muted-foreground transition-colors hover:bg-white/[0.05] hover:text-foreground"
                         >
                             {link.name}
-                        </a>
+                        </Link>
                     ))}
                 </div>
 
@@ -85,14 +85,14 @@ export function Navbar() {
                         className="mx-auto mt-2 max-w-5xl rounded-3xl border border-white/10 bg-[#0b0b10]/95 p-3 backdrop-blur-xl md:hidden"
                     >
                         {navLinks.map((link) => (
-                            <a
+                            <Link
                                 key={link.name}
                                 href={link.href}
                                 onClick={() => setIsOpen(false)}
                                 className="block rounded-2xl px-4 py-3 text-base text-foreground/90 hover:bg-white/[0.05]"
                             >
                                 {link.name}
-                            </a>
+                            </Link>
                         ))}
                         <div onClick={() => setIsOpen(false)} className="p-1 pt-2">
                             <CtaButton href="#agendar" className="w-full">

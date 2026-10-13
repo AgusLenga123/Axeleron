@@ -12,7 +12,11 @@ export const site = {
     email: "hola@axeliron.com",
 };
 
-export const whatsappHref = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
+export function whatsappLink(message: string = site.whatsappMessage) {
+    return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
+export const whatsappHref = whatsappLink();
 
 export function currentMonth() {
     return new Date().toLocaleDateString("es-AR", { month: "long" });
