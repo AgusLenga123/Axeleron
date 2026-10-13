@@ -1,8 +1,13 @@
 # Publica la landing en DonWeb a través de su "Integración con Git".
 #
 # En cada push a main: compila el sitio estático (carpeta out/) y lo publica como un commit nuevo
-# en la rama `deploy` de este repo. DonWeb está vinculado a esa rama y la trae cuando recibe el
-# webhook de GitHub (Settings → Webhooks, evento push, URL de deploy que da el panel de DonWeb).
+# en la rama `deploy` de este repo. DonWeb está vinculado a esa rama y la trae cuando el último
+# paso le avisa (una sola vez y recién cuando el commit ya está en `deploy`).
+#
+# Secret requerido (GitHub → Settings → Secrets and variables → Actions):
+#   DONWEB_DEPLOY_HOOK — URL de deploy que da el panel de DonWeb (Integración con Git).
+# No usar además el webhook de GitHub: dispara un aviso por cada push (también a main) y dos
+# despliegues superpuestos dejan el sitio a medias.
 
 name: Deploy a DonWeb
 
@@ -22,6 +27,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      DONWEB_DEPLOY_HOOK: ${{ secrets.DONWEB_DEPLOY_HOOK }}
     steps:
       - uses: actions/checkout@v5
 
@@ -63,3 +70,18 @@ jobs:
             git push origin deploy
             echo "Publicado en la rama deploy ($(git rev-parse --short HEAD))."
           fi
+
+      # DonWeb espera el mismo formato que el webhook de GitHub (evento push con la rama)
+      - name: Avisar a DonWeb
+        if: env.DONWEB_DEPLOY_HOOK != ''
+        run: |
+          payload=$(printf '{"ref":"refs/heads/deploy","repository":{"full_name":"%s","clone_url":"https://github.com/%s.git","ssh_url":"git@github.com:%s.git"}}' "$GITHUB_REPOSITORY" "$GITHUB_REPOSITORY" "$GITHUB_REPOSITORY")
+          curl -fsS -m 120 --retry 2 -X POST "$DONWEB_DEPLOY_HOOK" \
+            -H "Content-Type: application/json" -H "X-GitHub-Event: push" -H "User-Agent: GitHub-Hookshot/axeliron" \
+            -d "$payload"
+          echo
+          echo "DonWeb notificado: va a traer la rama deploy."
+
+      - name: Aviso de configuración pendiente
+        if: env.DONWEB_DEPLOY_HOOK == ''
+        run: echo "::warning::Falta el secret DONWEB_DEPLOY_HOOK. El sitio se publicó en la rama deploy pero DonWeb no fue avisado."
