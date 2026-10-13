@@ -61,7 +61,8 @@ jobs:
               failed=$((failed + 1))
               echo "falló: $f" >> ../upload.log
             fi
-          done < <(find . -type f -print0)
+          # Primero CSS/JS/imágenes y al final los HTML: así nunca queda online una página que pide archivos que todavía no se subieron
+          done < <(find . -type f ! -name '*.html' -print0; find . -type f -name '*.html' -print0)
           cd ..
           rm -f "$RUNNER_TEMP/curl.cfg"
 
